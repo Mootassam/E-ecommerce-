@@ -167,14 +167,18 @@
                                         <!-- Header Middle Wishlist Area End Here -->
                                         <!-- Begin Header Mini Cart Area -->
                                         <li class="hm-minicart">
-                                            <div class="hm-minicart-trigger">
+                                            <div  class="hm-minicart-trigger">
+                                           <router-link to="/shopping-cart">
+                                             <a @click=" open =! open">
                                                 <span class="item-icon"></span>
                                                 <span class="item-text">£80.00
                                                     <span class="cart-item-count">2</span>
                                                 </span>
+                                                </a>
+                                                </router-link>
                                             </div>
                                             <span></span>
-                                            <div class="minicart">
+                                            <div class="minicart" v-if ="open">
                                                 <ul class="minicart-product-list">
                                                     <li>
                                                         <a href="single-product.html" class="minicart-product-image">
@@ -367,6 +371,17 @@
 
 <script>
 export default {
+
+    data() {
+        return {
+            open:false,
+        }
+    },
+    methods:{
+        click(){
+            this.open = true ;
+        }
+    }
 
 }
 </script>

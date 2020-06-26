@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Category_model;
-use App\ImageGallery_model;
-use App\ProductAtrr_model;
 use App\Products_model;
+use App\ProductAtrr_model;
+use App\ImageGallery_model;
 use Illuminate\Http\Request;
+use App\Http\Resources\Products_modelRessource;
 
 class IndexController extends Controller
 {
@@ -16,7 +17,8 @@ class IndexController extends Controller
     }
 
     public function homes(){
-        $products=Products_model::all();
+
+        $products=Products_modelRessource::collection(Products_model::latest()->paginate(8));
         return $products;
     }
     public function shop(){
@@ -34,7 +36,7 @@ class IndexController extends Controller
         $imagesGalleries=ImageGallery_model::where('products_id',$id)->get();
         $totalStock=ProductAtrr_model::where('products_id',$id)->sum('stock');
         $relateProducts=Products_model::where([['id','!=',$id],['categories_id',$detail_product->categories_id]])->get();
-        return ['product' => $detail_product, 'image' => $imagesGalleries , 'stock' => $totalStock  , 'relateProducts'=> $relateProducts  ] ;
+        return ['data' => ['product' => $detail_product, 'image' => $imagesGalleries , 'stock' => $totalStock  , 'relateProducts'=> $relateProducts]  ] ;
 
     }
     public function getAttrs(Request $request){

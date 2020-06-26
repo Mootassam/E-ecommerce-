@@ -161,25 +161,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="paginatoin-area">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6">
-                                                <p>Showing 1-12 of 13 item(s)</p>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <ul class="pagination-box">
-                                                    <li><a href="#" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a>
-                                                    </li>
-                                                    <li class="active"><a href="#">1</a></li>
-                                                    <li><a href="#">2</a></li>
-                                                    <li><a href="#">3</a></li>
-                                                    <li>
-                                                      <a href="#" class="Next"> Next <i class="fa fa-chevron-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <pagination :meta="meta" v-on:pagination="get" ></pagination>
                                 </div>
                             </div>
                             <!-- shop-products-wrapper end -->
@@ -339,17 +321,21 @@
 
 <script>
 import detail from '../cart/viewp'
+import pagination from "../product/pagination";
 export default {
-    components:{detail},
+    components:{detail,pagination},
     data() {
         return {
             all:{},
-            details:{},
+             details:{},
+            pagination:{},
+            meta:{},
             form:{
 
             },
             detail:false,
             show:true ,
+
         }
     },
 created(){
@@ -360,7 +346,8 @@ this.get();
         added(id){
             axios.get(`/api/product-detail/${id}`).then(res =>{
                 EventBus.$emit('showp');
-                this.details =res.data;
+                this.details =res.data.data;
+
                 this.show= false ;
                 this.detail= true;
             }).catch(error => {
@@ -368,10 +355,21 @@ this.get();
             })
 
         },
-        get(){
-            axios.get('/api/homes').then( res => {
-                this.all = res.data ;
-            })
+        get(page){
+
+      axios.get('/api/homes',{
+          params:{
+              page
+          }
+      })
+
+            .then(res => {
+this.all = res.data.data ;
+this.meta = res.data.meta ;
+
+            });
+
+
         },
 
 

@@ -58,9 +58,10 @@
     <!-- jQuery-V1.12.4 -->
     <script src="{{asset('js/jsf/vendor/jquery-1.12.4.min.js')}}"></script>
     <!-- Popper js -->
+
     <script src="{{asset('js/jsf/vendor/popper.min.js')}}"></script>
     <!-- Bootstrap V4.1.3 Fremwork js -->
-    <script src="{{asset('js/bootstrap.js')}}"></script>
+
     <!-- Ajax Mail js -->
     <script src="{{asset('js/jsf/ajax-mail.js')}}"></script>
     <!-- Meanmenu js -->
@@ -98,6 +99,8 @@
     <!-- Main/Activator js -->
     <script src="{{asset('js/jsf/main.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/bootstrap.js')}}"></script>
+
 
     <script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.22&amp;key=AIzaSyChs2QWiAhnzz0a4OEhzqCXwx_qA9ST_lE"></script>
 

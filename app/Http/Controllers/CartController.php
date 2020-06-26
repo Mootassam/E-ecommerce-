@@ -12,12 +12,13 @@ class CartController extends Controller
 {
     public function index(){
         $session_id=Session::get('session_id');
-        $cart_datas=Cart_model::where('session_id',$session_id)->get();
+        $cart_datas=Cart_model::where('session_id',"smnpDrYLfGChi2LAEq3n2NYt54Uh3plbc21NLcUB")->get();
         $total_price=0;
         foreach ($cart_datas as $cart_data){
             $total_price+=$cart_data->price*$cart_data->quantity;
         }
-        return view('frontEnd.cart',compact('cart_datas','total_price'));
+        return [ 'cart' => $cart_datas ,'tprice' => $total_price ]  ;
+
     }
 
     public function addToCart(Request $request){
@@ -28,9 +29,9 @@ class CartController extends Controller
             return back()->with('message','Please select Size');
         }else{
             $stockAvailable=DB::table('product_att')->select('stock','sku')->where(['products_id'=>$inputToCart['products_id'],
-                'price'=>$inputToCart['price']])->first();
-            if($stockAvailable->stock>=$inputToCart['quantity']){
-                $inputToCart['user_email']='weshare@gmail.com';
+            'price'=>$inputToCart['price'] , 'stock' =>$inputToCart['stock']])->first();
+        if($stockAvailable == true ){
+
                 $session_id=Session::get('session_id');
                 if(empty($session_id)){
                     $session_id=str_random(40);
@@ -44,13 +45,16 @@ class CartController extends Controller
                     'product_color'=>$inputToCart['product_color'],
                     'size'=>$inputToCart['size']])->count();
                 if($count_duplicateItems>0){
-                    return back()->with('message','This Item Added already');
+
+                    response()->json('This Item Added already', 204);
                 }else{
                     Cart_model::create($inputToCart);
                     return back()->with('message','Add To Cart Already');
+                    response()->json('Add To Cart Already', 200);
                 }
             }else{
-                return back()->with('message','Stock is not Available!');
+                response()->json('Stock is not Available!', 204);
+
             }
         }
     }

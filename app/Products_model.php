@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Replies;
 use Illuminate\Database\Eloquent\Model;
 
 class Products_model extends Model
@@ -16,4 +17,22 @@ class Products_model extends Model
     public function attributes(){
         return $this->hasMany(ProductAtrr_model::class,'products_id','id');
     }
+
+    public function replies(){
+        return $this->hasMany(Replies::class,'products_id','id');
+    }
+
+
+
+
+
+
+
+
+
+
+    public function getPathAttribute(){
+        return "/produit/$this->slug" ;
+    }
+
 }

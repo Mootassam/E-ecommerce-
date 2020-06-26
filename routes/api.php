@@ -24,3 +24,8 @@ Route::get('order', 'ProductsController@order');
 // Route for User //
 Route::get('/homes','IndexController@homes');
 Route::get('/product-detail/{id}','IndexController@detialpro');
+// Cart are //
+Route::post('/addToCart','CartController@addToCart')->name('addToCart');
+Route::get('/viewcart','CartController@index');
+Route::apiresource('/reply', 'RepliesController');
+
