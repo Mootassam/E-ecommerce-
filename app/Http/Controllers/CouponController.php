@@ -115,9 +115,7 @@ class CouponController extends Controller
 
     }
     public function applycoupon(Request $request){
-        $this->validate($request,[
-            'coupon_code'=>'required'
-        ]);
+
         $input_data=$request->all();
         $coupon_code=$input_data['coupon_code'];
         $total_amount_price=$input_data['Total_amountPrice'];

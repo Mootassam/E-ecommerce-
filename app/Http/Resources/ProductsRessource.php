@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use App\replies;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Products_modelRessource extends JsonResource
+class ProductsRessource extends JsonResource
 {
     /**
      * Transform the resource collection into an array.
@@ -19,9 +19,8 @@ class Products_modelRessource extends JsonResource
         'id' =>$this->id,
         'categories_id'=>$this->categories_id,
         'p_name'=>$this->p_name,
-
-
         'path'=>$this->path,
+        'image'=>$this->image,
         'p_code'=>$this->p_code,
         'p_color'=>$this->p_color,
         'description'=>$this->description,

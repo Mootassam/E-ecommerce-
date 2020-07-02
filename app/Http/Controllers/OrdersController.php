@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Cart_model;
 use App\Orders_model;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\OrderRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class OrdersController extends Controller
@@ -38,5 +39,10 @@ class OrdersController extends Controller
     public function paypal(Request $request){
         $who_buying=Orders_model::where('users_id',Auth::id())->first();
         return view('payment.paypal',compact('who_buying'));
+    }
+
+    public function store(OrderRequest $request){
+            return Orders_model::create($request->all());
+
     }
 }

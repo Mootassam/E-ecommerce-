@@ -25,8 +25,12 @@
                  <router-link to="/product/index">   <a class="nav-link  "  ><i class="fab fa-product-hunt"></i>List Products </a> </router-link>
                 </li>
 
+
                 <li class="nav-item ">
                    <router-link to="/coupon/index"> <a class="nav-link"><i class="fa fa-tags"></i>List Coupons </a> </router-link>
+                </li>
+                   <li class="nav-item ">
+                   <router-link to="/coupon/index"> <a class="nav-link"><i class="fa fa-users"></i>Gestion des comptes  </a> </router-link>
                 </li>
             </ul>
         </div>

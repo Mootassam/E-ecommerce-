@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\Category_model;
 use App\Products_model;
 use App\ProductAtrr_model;
 use App\ImageGallery_model;
 use Illuminate\Http\Request;
-use App\Http\Resources\Products_modelRessource;
+
 
 class IndexController extends Controller
 {
@@ -18,11 +19,12 @@ class IndexController extends Controller
 
     public function homes(){
 
-        $products=Products_modelRessource::collection(Products_model::latest()->paginate(8));
-        return $products;
+        $products=Product::latest()->paginate(8);
+        return ['product' => $products];
+
     }
     public function shop(){
-        $products=Products_model::all();
+        $products=Product::all();
         $byCate="";
         return view('frontEnd.products',compact('products','byCate'));
     }

@@ -19,14 +19,8 @@
                                     <ul class="ht-menu">
                                         <!-- Begin Setting Area -->
                                         <li>
-                                            <div class="ht-setting-trigger"><span>Setting</span></div>
-                                            <div class="setting ht-setting">
-                                                <ul class="ht-setting-list">
-                                                    <li><a href="login-register.html">My Account</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                    <li><a href="login-register.html">Sign In</a></li>
-                                                </ul>
-                                            </div>
+                                            <div class=""><router-link to="/logIn"><span>Sign In</span></router-link></div>
+
                                         </li>
                                         <!-- Setting Area End Here -->
                                         <!-- Begin Currency Area -->
@@ -47,8 +41,8 @@
                                             <div class="ht-language-trigger"><span>English</span></div>
                                             <div class="language ht-language">
                                                 <ul class="ht-setting-list">
-                                                    <li class="active"><a href="#"><img src="images/menu/flag-icon/1.jpg" alt="">English</a></li>
-                                                    <li><a href="#"><img src="images/menu/flag-icon/2.jpg" alt="">Français</a></li>
+                                                    <li class="active"><a href="#"><img src="css/fronts/images/menu/flag-icon/1.jpg" alt="">English</a></li>
+                                                    <li><a href="#"><img src="css/fronts/images/menu/flag-icon/2.jpg" alt="">Français</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -69,7 +63,7 @@
                             <div class="col-lg-3">
                                 <div class="logo pb-sm-30 pb-xs-30">
                                     <a href="index.html">
-                                        <img src="images/menu/logo/2.jpg" alt="">
+                                        <img src="css/fronts/images/menu/logo/2.jpg" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -155,64 +149,50 @@
                                 </form>
                                 <!-- Header Middle Searchbox Area End Here -->
                                 <!-- Begin Header Middle Right Area -->
-                                <div class="header-middle-right">
+                          <div class="header-middle-right">
                                     <ul class="hm-menu">
                                         <!-- Begin Header Middle Wishlist Area -->
                                         <li class="hm-wishlist">
+                                            <router-link to="/wishlist">
                                             <a href="wishlist.html">
-                                                <span class="cart-item-count wishlist-item-count">0</span>
+                                                <span class="cart-item-count wishlist-item-count">{{heart}}</span>
                                                 <i class="fa fa-heart-o"></i>
                                             </a>
+                                            </router-link>
                                         </li>
                                         <!-- Header Middle Wishlist Area End Here -->
                                         <!-- Begin Header Mini Cart Area -->
                                         <li class="hm-minicart">
-                                            <div  class="hm-minicart-trigger">
-                                           <router-link to="/shopping-cart">
-                                             <a @click=" open =! open">
+                                            <div class="hm-minicart-trigger">
                                                 <span class="item-icon"></span>
                                                 <span class="item-text">£80.00
-                                                    <span class="cart-item-count">2</span>
+                                                    <span class="cart-item-count">{{basket}}</span>
                                                 </span>
-                                                </a>
-                                                </router-link>
                                             </div>
                                             <span></span>
-                                            <div class="minicart" v-if ="open">
+                                            <div class="minicart">
                                                 <ul class="minicart-product-list">
-                                                    <li>
+                                                    <li v-for="(cart,index) in carts" :key="cart.id">
                                                         <a href="single-product.html" class="minicart-product-image">
-                                                            <img src="images/product/small-size/1.jpg" alt="cart products">
+                                                            <img src="css/fronts/images/product/small-size/5.jpg" alt="cart products">
                                                         </a>
                                                         <div class="minicart-product-details">
-                                                            <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                            <span>£40 x 1</span>
+                                                            <h6><a href="single-product.html">{{cart.product_name}}</a></h6>
+                                                            <span>{{cart.price }} x {{cart.amount}}</span>
                                                         </div>
-                                                        <button class="close">
-                                                            <i class="fa fa-close"></i>
+                                                        <button class="close" title="Remove" @click="removeCart(index)">
+                                                            <i class="fa fa-close" ></i>
                                                         </button>
                                                     </li>
-                                                    <li>
-                                                        <a href="single-product.html" class="minicart-product-image">
-                                                            <img src="images/product/small-size/2.jpg" alt="cart products">
-                                                        </a>
-                                                        <div class="minicart-product-details">
-                                                            <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                            <span>£40 x 1</span>
-                                                        </div>
-                                                        <button class="close">
-                                                            <i class="fa fa-close"></i>
-                                                        </button>
-                                                    </li>
+
                                                 </ul>
-                                                <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
+                                                <p class="minicart-total">SUBTOTAL: <span>{{totale}} TND </span></p>
                                                 <div class="minicart-button">
-                                                    <a href="checkout.html" class="li-button li-button-dark li-button-fullwidth li-button-sm">
+                                                   <router-link to="/shopping-cart"> <a href="shopping-cart.html" class="li-button li-button-fullwidth li-button-dark">
                                                         <span>View Full Cart</span>
                                                     </a>
-                                                    <a href="checkout.html" class="li-button li-button-fullwidth li-button-sm">
-                                                        <span>Checkout</span>
-                                                    </a>
+                                                    </router-link>
+
                                                 </div>
                                             </div>
                                         </li>
@@ -236,117 +216,10 @@
                                    <nav>
                                        <ul>
                                            <li> <router-link to="/homes"><a >Accueil </a> </router-link></li>
-                                           <li class="megamenu-holder"><a href="shop-left-sidebar.html">Shop</a>
-                                               <ul class="megamenu hb-megamenu">
-                                                   <li><a href="shop-left-sidebar.html">Shop Page Layout</a>
-                                                       <ul>
-                                                           <li><a href="shop-3-column.html">Shop 3 Column</a></li>
-                                                           <li><a href="shop-4-column.html">Shop 4 Column</a></li>
-                                                           <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-                                                           <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                                           <li><a href="shop-list.html">Shop List</a></li>
-                                                           <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a></li>
-                                                           <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a></li>
-                                                       </ul>
-                                                   </li>
-                                                   <li><a href="single-product-gallery-left.html">Single Product Style</a>
-                                                       <ul>
-                                                           <li><a href="single-product-carousel.html">Single Product Carousel</a></li>
-                                                           <li><a href="single-product-gallery-left.html">Single Product Gallery Left</a></li>
-                                                           <li><a href="single-product-gallery-right.html">Single Product Gallery Right</a></li>
-                                                           <li><a href="single-product-tab-style-top.html">Single Product Tab Style Top</a></li>
-                                                           <li><a href="single-product-tab-style-left.html">Single Product Tab Style Left</a></li>
-                                                           <li><a href="single-product-tab-style-right.html">Single Product Tab Style Right</a></li>
-                                                       </ul>
-                                                   </li>
-                                                   <li><a href="single-product.html">Single Products</a>
-                                                       <ul>
-                                                           <li><a href="single-product.html">Single Product</a></li>
-                                                           <li><a href="single-product-sale.html">Single Product Sale</a></li>
-                                                           <li><a href="single-product-group.html">Single Product Group</a></li>
-                                                           <li><a href="single-product-normal.html">Single Product Normal</a></li>
-                                                           <li><a href="single-product-affiliate.html">Single Product Affiliate</a></li>
-                                                       </ul>
-                                                   </li>
-                                               </ul>
-                                           </li>
-                                           <li class="dropdown-holder"><a href="blog-left-sidebar.html">Blog</a>
-                                               <ul class="hb-dropdown">
-                                                   <li class="sub-dropdown-holder"><a href="blog-left-sidebar.html">Blog Grid View</a>
-                                                       <ul class="hb-dropdown hb-sub-dropdown">
-                                                           <li><a href="blog-2-column.html">Blog 2 Column</a></li>
-                                                           <li><a href="blog-3-column.html">Blog 3 Column</a></li>
-                                                           <li><a href="blog-left-sidebar.html">Grid Left Sidebar</a></li>
-                                                           <li><a href="blog-right-sidebar.html">Grid Right Sidebar</a></li>
-                                                       </ul>
-                                                   </li>
-                                                   <li class="sub-dropdown-holder"><a href="blog-list-left-sidebar.html">Blog List View</a>
-                                                       <ul class="hb-dropdown hb-sub-dropdown">
-                                                           <li><a href="blog-list.html">Blog List</a></li>
-                                                           <li><a href="blog-list-left-sidebar.html">List Left Sidebar</a></li>
-                                                           <li><a href="blog-list-right-sidebar.html">List Right Sidebar</a></li>
-                                                       </ul>
-                                                   </li>
-                                                   <li class="sub-dropdown-holder"><a href="blog-details-left-sidebar.html">Blog Details</a>
-                                                       <ul class="hb-dropdown hb-sub-dropdown">
-                                                           <li><a href="blog-details-left-sidebar.html">Left Sidebar</a></li>
-                                                           <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
-                                                       </ul>
-                                                   </li>
-                                                   <li class="sub-dropdown-holder"><a href="blog-gallery-format.html">Blog Format</a>
-                                                       <ul class="hb-dropdown hb-sub-dropdown">
-                                                           <li><a href="blog-audio-format.html">Blog Audio Format</a></li>
-                                                           <li><a href="blog-video-format.html">Blog Video Format</a></li>
-                                                           <li><a href="blog-gallery-format.html">Blog Gallery Format</a></li>
-                                                       </ul>
-                                                   </li>
-                                               </ul>
-                                           </li>
-                                           <li class="megamenu-static-holder"><a href="index.html">Pages</a>
-                                               <ul class="megamenu hb-megamenu">
-                                                   <li><a href="blog-left-sidebar.html">Blog Layouts</a>
-                                                       <ul>
-                                                           <li><a href="blog-2-column.html">Blog 2 Column</a></li>
-                                                           <li><a href="blog-3-column.html">Blog 3 Column</a></li>
-                                                           <li><a href="blog-left-sidebar.html">Grid Left Sidebar</a></li>
-                                                           <li><a href="blog-right-sidebar.html">Grid Right Sidebar</a></li>
-                                                           <li><a href="blog-list.html">Blog List</a></li>
-                                                           <li><a href="blog-list-left-sidebar.html">List Left Sidebar</a></li>
-                                                           <li><a href="blog-list-right-sidebar.html">List Right Sidebar</a></li>
-                                                       </ul>
-                                                   </li>
-                                                   <li><a href="blog-details-left-sidebar.html">Blog Details Pages</a>
-                                                       <ul>
-                                                           <li><a href="blog-details-left-sidebar.html">Left Sidebar</a></li>
-                                                           <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
-                                                           <li><a href="blog-audio-format.html">Blog Audio Format</a></li>
-                                                           <li><a href="blog-video-format.html">Blog Video Format</a></li>
-                                                           <li><a href="blog-gallery-format.html">Blog Gallery Format</a></li>
-                                                       </ul>
-                                                   </li>
-                                                   <li><a href="index.html">Other Pages</a>
-                                                       <ul>
-                                                           <li><a href="login-register.html">My Account</a></li>
-                                                           <li><a href="checkout.html">Checkout</a></li>
-                                                           <li><a href="compare.html">Compare</a></li>
-                                                           <li><a href="wishlist.html">Wishlist</a></li>
-                                                           <li><a href="shopping-cart.html">Shopping Cart</a></li>
-                                                       </ul>
-                                                   </li>
-                                                   <li><a href="index.html">Other Pages 2</a>
-                                                       <ul>
-                                                           <li><a href="contact.html">Contact</a></li>
-                                                           <li><a href="about-us.html">About Us</a></li>
-                                                           <li><a href="faq.html">FAQ</a></li>
-                                                           <li><a href="404.html">404 Error</a></li>
-                                                       </ul>
-                                                   </li>
-                                               </ul>
-                                           </li>
                                            <li> <router-link to="/AboutUs"><a>À propos de nous</a></router-link></li>
-                                        <li><router-link to="/contact"><a >CONTACT</a></router-link></li>
+                                           <li><router-link to="/contact"><a >CONTACT</a></router-link></li>
                                            <li> <router-link to="/FAQ"><a>FAQ</a></router-link></li>
-                                           <li><a href="shop-left-sidebar.html">Accessories</a></li>
+
                                        </ul>
                                    </nav>
                                </div>
@@ -375,12 +248,132 @@ export default {
     data() {
         return {
             open:false,
+            itemCount:0,
+            opencart:false,
+
+            basket:0,
+            totale:0,
+            shows:{},
+            carts:[],
+            badge:0,
+            quantity:1,
+            totaleprice:0,
+            cartadd:{
+                products_id:'',
+                product_name:'',
+                product_code:'',
+                price:'',
+                image:'',
+                amount:'',
+            },
+            wishesadd:{
+                products_id:'',
+                product_name:'',
+                product_code:'',
+                price:'',
+                image:'',
+            },
+            wishes:[],
+            heart:0,
+
+
+
         }
     },
+    mounted() {
+        this.viewcart();
+        this.viewWish();
+
+      },
+      created(){
+        this.addwish();
+        this.listen();
+        this.DeleteWish();
+        this.removescart();
+        this.UpdateCart();
+      },
     methods:{
-        click(){
-            this.open = true ;
+    viewcart(){
+      if(localStorage.getItem('carts')){
+          this.carts = JSON.parse(localStorage.getItem('carts'));
+        this.basket= this.carts.length ;
+        this.totale =this.carts.reduce((totale,item) => {
+            return totale+ item.amount * item.price
+        },0)
+
+      }
+        },
+        removeCart(index){
+        this.carts.splice(index,1);
+        this.storeCart();
+        },
+        storeCart(){
+
+            let parsed = JSON.stringify(this.carts);
+            localStorage.setItem('carts',parsed);
+            this.viewcart() ;
+        },
+
+        listen(pro){
+EventBus.$on('start',(pro) => {
+  this.cartadd.products_id = pro.id ;
+    this.cartadd.product_name = pro.p_name;
+    this.cartadd.product_code=pro.p_code;
+     this.cartadd.price=pro.price;
+    this.cartadd.amount=this.quantity;
+    this.cartadd.image=pro.image;
+    this.carts.push(this.cartadd);
+    this.cartadd = {};
+    this.storeCart();
+})
+        },
+
+        viewWish(){
+            if(localStorage.getItem('wishes')){
+                this.wishes= JSON.parse(localStorage.getItem('wishes')) ;
+                this.heart = this.wishes.length ;
+            }
+
+        },
+        addwish(wish){
+            EventBus.$on('wishes',(wish)=>{
+
+                this.wishesadd.products_id = wish.id ;
+                this.wishesadd.product_name = wish.p_name;
+                this.wishesadd.product_code=wish.p_code;
+                this.wishesadd.price=wish.price;
+                this.wishesadd.image=wish.image;
+                this.wishes.push(this.wishesadd);
+                this.wishesadd = {};
+                this.storeWish();
+            });
+
+        },
+        storeWish(){
+            let parsed = JSON.stringify(this.wishes);
+            localStorage.setItem('wishes',parsed);
+            this.viewWish();
+        },
+
+
+        DeleteWish(){
+            EventBus.$on('delteWish',()=>{
+                this.viewWish();
+            })
+        },
+        removescart(){
+            EventBus.$on('deletecart',()=> {
+ this.viewcart();
+            });
+
+        },
+        UpdateCart(){
+                EventBus.$on('storeCart',()=> {
+                 this.viewcart();
+            })
         }
+
+
     }
 
 }

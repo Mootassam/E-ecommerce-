@@ -31,7 +31,9 @@ class CategoryController extends Controller
         $menu_active=2;
         $plucked=Category_model::where('parent_id',0)->pluck('name','id');
         $cate_levels=['0'=>'Main Category']+$plucked->all();
-        return view('backEnd.category.create',compact('menu_active','cate_levels'));
+        $subCategory=DB::table('categories')->select('id','name')->where('parent_id',$key)->get();
+
+        return [ 'cat' =>$cate_levels , 'subcat' =>$subCategory];
     }
 
     /**
@@ -54,7 +56,7 @@ class CategoryController extends Controller
     {
         $this->validate($request,[
             'name'=>'required|max:255|unique:categories,name',
-            'url'=>'required',
+
         ]);
         $data=$request->all();
         $created= Category_model::create($data);
@@ -118,10 +120,15 @@ class CategoryController extends Controller
     public function parent(){
 
 
-            $subCategory=Category_model::select('id','name')->where('parent_id','==',0)->get();
-            return $subCategory ;
+        $plucked=Category_model::where('parent_id',0)->pluck('name','id');
+        $cate_levels=['0'=>'Main Category']+$plucked->all();
+        foreach($cate_levels as $key=>$value){
+
+        $subCategory=Category_model::select('id','name')->where('parent_id',$key)->get();
 
 
+    }
+    return $cate_levels;
     }
     public function destroy($id)
     {

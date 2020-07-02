@@ -20,7 +20,7 @@
                                         <div class="form-group">
                                             <label for="inputEmail">Product Category</label>
                                             <select   class="form-control" v-model="form.categories_id">
-                                                <option v-for="cat in category" :key="cat.id" :value="cat.id">{{cat.name}} </option>
+                                                <option v-for="cat in category" :key="cat.id" :value="0">{{cat}} </option>
                                             </select>
          <ul id="parsley-id-5" v-if="errors.coupon_code" class="parsley-errors-list filled"><li class="parsley-required">{{errors.coupon_code[0]}}</li></ul>
 
@@ -52,7 +52,7 @@
                                         </div>
                                                  <div class="form-group">
                                             <label for="inputRepeatPassword">Photo</label>
-                                            <input type="file" v-on:change="onImageChange" class="form-control">
+                                            <input type="file" v-on:change="onImageChange"  class="form-control" ref="file" name="file" @change="addFile()">
                                             <div class="col-md-3" v-if="form.image">
                               <img :src="form.image" class="img-responsive" height="70" width="90">
                            </div>
@@ -112,6 +112,9 @@ export default {
     created(){this.listen();
     this.getcategory(); },
     methods:{
+         addFile() {
+            this.attachment = this.$refs.file.files[0];
+        },
  getcategory(){
         axios.get('api/parentcategory').then(res => { this.category = res.data} ).catch( error => { console.log(error)})
     },
@@ -133,7 +136,9 @@ export default {
             this.errors='';
         },
         submit(){
-            axios.post('http://localhost:8000/api/product',this.form)
+
+
+            axios.post('/api/product',this.form)
             .then(res => {console.log(res.data)})
             .catch(error =>{
                if(error.response.status== 422) {

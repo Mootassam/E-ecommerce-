@@ -12,25 +12,25 @@ class CartController extends Controller
 {
     public function index(){
         $session_id=Session::get('session_id');
-        $cart_datas=Cart_model::where('session_id',"smnpDrYLfGChi2LAEq3n2NYt54Uh3plbc21NLcUB")->get();
+        $cart_datas=Cart_model::where('session_id',"UzTfDr3P1lZ0zXbsDAdz4ei9VUzRCnlRJPDnIAIW")->get();
+
         $total_price=0;
         foreach ($cart_datas as $cart_data){
             $total_price+=$cart_data->price*$cart_data->quantity;
         }
-        return [ 'cart' => $cart_datas ,'tprice' => $total_price ]  ;
+        return ['cart'=>$cart_datas,'tprice'=>$total_price];
 
     }
 
     public function addToCart(Request $request){
         $inputToCart=$request->all();
+
         Session::forget('discount_amount_price');
         Session::forget('coupon_code');
-        if($inputToCart['size']==""){
-            return back()->with('message','Please select Size');
-        }else{
+
             $stockAvailable=DB::table('product_att')->select('stock','sku')->where(['products_id'=>$inputToCart['products_id'],
-            'price'=>$inputToCart['price'] , 'stock' =>$inputToCart['stock']])->first();
-        if($stockAvailable == true ){
+                'price'=>$inputToCart['price'] , 'stock' =>$inputToCart['stock']])->first();
+
 
                 $session_id=Session::get('session_id');
                 if(empty($session_id)){
@@ -38,25 +38,17 @@ class CartController extends Controller
                     Session::put('session_id',$session_id);
                 }
                 $inputToCart['session_id']=$session_id;
-                $sizeAtrr=explode("-",$inputToCart['size']);
-                $inputToCart['size']=$sizeAtrr[1];
-                $inputToCart['product_code']=$stockAvailable->sku;
-                $count_duplicateItems=Cart_model::where(['products_id'=>$inputToCart['products_id'],
-                    'product_color'=>$inputToCart['product_color'],
-                    'size'=>$inputToCart['size']])->count();
-                if($count_duplicateItems>0){
 
-                    response()->json('This Item Added already', 204);
+
+                $count_duplicateItems=Cart_model::where(['products_id'=>$inputToCart['products_id']])->count();
+                if($count_duplicateItems>0){
+                    return back()->with('message','This Item Added already');
                 }else{
                     Cart_model::create($inputToCart);
                     return back()->with('message','Add To Cart Already');
-                    response()->json('Add To Cart Already', 200);
                 }
-            }else{
-                response()->json('Stock is not Available!', 204);
 
-            }
-        }
+
     }
     public function deleteItem($id=null){
         $delete_item=Cart_model::findOrFail($id);

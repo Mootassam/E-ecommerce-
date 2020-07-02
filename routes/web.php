@@ -12,6 +12,9 @@
 */
 /* FrontEnd Location */
 
+Route::view('/{any}', 'index');
+Route::view('/{any1}/{any2}', 'index');
+
 Route::get('/','IndexController@index');
 Route::get('/list-products','IndexController@shop');
 Route::get('/cat/{id}','IndexController@listByCat')->name('cats');

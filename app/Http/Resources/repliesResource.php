@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Resources;
-
-use Illuminate\Http\Resources\Json\JsonResource;
+use auth;
 use App\User;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class repliesResource extends JsonResource
 {
@@ -19,10 +19,10 @@ class repliesResource extends JsonResource
 
             'id'=>$this->id,
             'body'=>$this->body,
+            'product_id'=>$this->product_id,
             'user'=>$this->user->name,
-            'product_name'=>$this->product->p_name,
-            'user_id'=>$this->user_id,
             'created_at'=>$this->created_at->diffForHumans(),
-    ];
+
+              ];
     }
 }

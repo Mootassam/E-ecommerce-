@@ -18,11 +18,10 @@ class CreateCartTable extends Migration
             $table->integer('products_id');
             $table->string('product_name');
             $table->string('product_code');
-            $table->string('product_color');
-            $table->string('size');
             $table->float('price');
             $table->integer('quantity');
-            $table->string('user_email');
+            $table->integer('stock');
+            $table->string('image');
             $table->string('session_id');
             $table->timestamps();
         });

@@ -1,24 +1,29 @@
-<template><div>
+<template>
+<div>
             <div class="breadcrumb-area">
                 <div class="container">
                     <div class="breadcrumb-content">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html">Home
+
+</a></li>
                             <li class="active">Shop List Left Sidebar</li>
                         </ul>
                     </div>
                 </div>
             </div>
+
             <!-- Li's Breadcrumb Area End Here -->
             <!-- Begin Li's Content Wraper Area -->
+
             <div class="content-wraper pt-60 pb-60" v-if="show">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-9 order-1 order-lg-2">
+                        <div class="col-lg-12">
                             <!-- Begin Li's Banner Area -->
                             <div class="single-banner shop-page-banner">
                                 <a href="#">
-                                    <img src="images/bg-banner/2.jpg" alt="Li's Static Banner">
+                                    <img src="css/fronts/images/bg-banner/2.jpg" alt="Li's Static Banner">
                                 </a>
                             </div>
                             <!-- Li's Banner Area End Here -->
@@ -63,7 +68,7 @@
                                             <div class="row">
 
 
-                                                <div class="col-lg-4 col-md-4 col-sm-6 mt-40"  v-for="prd in all" :key="prd.id" >
+                                                <div class="col-lg-4 col-md-4 col-sm-6 mt-40"  v-for="(prd,index) in all" :key="index" >
                                                     <!-- single-product-wrap start -->
                                                     <div class="single-product-wrap">
                                                         <div class="product-image">
@@ -89,15 +94,15 @@
                                                                         </ul>
                                                                     </div>
                                                                 </div>
-                                                                <h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
+                                                                <h4><a class="product_name" href="single-product.html">{{prd.p_name}}</a></h4>
                                                                 <div class="price-box">
-                                                                    <span class="new-price">$46.80</span>
+                                                                    <span class="new-price">{{prd_price}} TND </span>
                                                                 </div>
                                                             </div>
                                                             <div class="add-actions">
                                                                 <ul class="add-actions-link">
-                                                                    <li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
-                                                                    <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+                                                                    <li class="add-cart active"><a href="#" @click="addtocart(prd)"  > <p id="fold_p"> Add to cart </p> </a></li>
+                                                                    <li><a href="#" title="quick view" class="quick-view-btn"><i class="fa fa-eye"></i></a></li>
                                                                     <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
                                                                 </ul>
                                                             </div>
@@ -112,7 +117,7 @@
                                         <div class="row">
                                             <div class="col">
 
-                                                <div class="row product-layout-list" v-for="prd in all" :key="prd.id">
+                                                <div class="row product-layout-list" v-for="(prd,index) in all" :key="index">
                                                     <div class="col-lg-3 col-md-5 ">
                                                         <div class="product-image">
                                                             <a href="single-product.html">
@@ -146,12 +151,15 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="col-lg-4">
                                                         <div class="shop-add-action mb-xs-30">
                                                             <ul class="add-actions-link">
-                                                                <li class="add-cart"><a  @click="added(prd.id)">Add to cart</a></li>
-                                                                <li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-                                                                <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
+
+                     <li class="add-cart"> <a  href="#" @click="addtocart(prd)">Add to cart</a></li>
+
+                                                              <li class="wishlist"><a href="#" @click="wishlist(prd)"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
+                                                                <li><a class="quick-view"  @click="quickComment(prd.id)"  href="#"><i class="fa fa-eye"></i>Quick view</a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -166,184 +174,68 @@
                             </div>
                             <!-- shop-products-wrapper end -->
                         </div>
-                        <div class="col-lg-3 order-2 order-lg-1">
-                            <!--sidebar-categores-box start  -->
-                            <div class="sidebar-categores-box mt-sm-30 mt-xs-30">
-                                <div class="sidebar-title">
-                                    <h2>Laptop</h2>
-                                </div>
-                                <!-- category-sub-menu start -->
-                                <div class="category-sub-menu">
-                                    <ul>
-                                        <li class="has-sub"><a href="# ">Prime Video</a>
-                                            <ul>
-                                                <li><a href="#">All Videos</a></li>
-                                                <li><a href="#">Blouses</a></li>
-                                                <li><a href="#">Evening Dresses</a></li>
-                                                <li><a href="#">Summer Dresses</a></li>
-                                                <li><a href="#">T-Rent or Buy</a></li>
-                                                <li><a href="#">Your Watchlist</a></li>
-                                                <li><a href="#">Watch Anywhere</a></li>
-                                                <li><a href="#">Getting Started</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="has-sub"><a href="#">Computer</a>
-                                            <ul>
-                                                <li><a href="#">TV & Video</a></li>
-                                                <li><a href="#">Audio & Theater</a></li>
-                                                <li><a href="#">Camera, Photo</a></li>
-                                                <li><a href="#">Cell Phones</a></li>
-                                                <li><a href="#">Headphones</a></li>
-                                                <li><a href="#">Video Games</a></li>
-                                                <li><a href="#">Wireless Speakers</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="has-sub"><a href="#">Electronics</a>
-                                            <ul>
-                                                <li><a href="#">Amazon Home</a></li>
-                                                <li><a href="#">Kitchen & Dining</a></li>
-                                                <li><a href="#">Bed & Bath</a></li>
-                                                <li><a href="#">Appliances</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- category-sub-menu end -->
-                            </div>
-                            <!--sidebar-categores-box end  -->
-                            <!--sidebar-categores-box start  -->
-                            <div class="sidebar-categores-box">
-                                <div class="sidebar-title">
-                                    <h2>Filter By</h2>
-                                </div>
-                                <!-- btn-clear-all start -->
-                                <button class="btn-clear-all mb-sm-30 mb-xs-30">Clear all</button>
-                                <!-- btn-clear-all end -->
-                                <!-- filter-sub-area start -->
-                                <div class="filter-sub-area">
-                                    <h5 class="filter-sub-titel">Brand</h5>
-                                    <div class="categori-checkbox">
-                                        <form action="#">
-                                            <ul>
-                                                <li><input type="checkbox" name="product-categori"><a href="#">Prime Video (13)</a></li>
-                                                <li><input type="checkbox" name="product-categori"><a href="#">Computers (12)</a></li>
-                                                <li><input type="checkbox" name="product-categori"><a href="#">Electronics (11)</a></li>
-                                            </ul>
-                                        </form>
-                                    </div>
-                                 </div>
-                                <!-- filter-sub-area end -->
-                                <!-- filter-sub-area start -->
-                                <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                                    <h5 class="filter-sub-titel">Categories</h5>
-                                    <div class="categori-checkbox">
-                                        <form action="#">
-                                            <ul>
-                                                <li><input type="checkbox" name="product-categori"><a href="#">Graphic Corner (10)</a></li>
-                                                <li><input type="checkbox" name="product-categori"><a href="#"> Studio Design (6)</a></li>
-                                            </ul>
-                                        </form>
-                                    </div>
-                                 </div>
-                                <!-- filter-sub-area end -->
-                                <!-- filter-sub-area start -->
-                                <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                                    <h5 class="filter-sub-titel">Size</h5>
-                                    <div class="size-checkbox">
-                                        <form action="#">
-                                            <ul>
-                                                <li><input type="checkbox" name="product-size"><a href="#">S (3)</a></li>
-                                                <li><input type="checkbox" name="product-size"><a href="#">M (3)</a></li>
-                                                <li><input type="checkbox" name="product-size"><a href="#">L (3)</a></li>
-                                                <li><input type="checkbox" name="product-size"><a href="#">XL (3)</a></li>
-                                            </ul>
-                                        </form>
-                                    </div>
-                                </div>
-                                <!-- filter-sub-area end -->
-                                <!-- filter-sub-area start -->
-                                <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                                    <h5 class="filter-sub-titel">Color</h5>
-                                    <div class="color-categoriy">
-                                        <form action="#">
-                                            <ul>
-                                                <li><span class="white"></span><a href="#">White (1)</a></li>
-                                                <li><span class="black"></span><a href="#">Black (1)</a></li>
-                                                <li><span class="Orange"></span><a href="#">Orange (3) </a></li>
-                                                <li><span class="Blue"></span><a href="#">Blue  (2) </a></li>
-                                            </ul>
-                                        </form>
-                                    </div>
-                                </div>
-                                <!-- filter-sub-area end -->
-                                <!-- filter-sub-area start -->
-                                <div class="filter-sub-area pt-sm-10 pb-sm-15 pb-xs-15">
-                                    <h5 class="filter-sub-titel">Dimension</h5>
-                                    <div class="categori-checkbox">
-                                        <form action="#">
-                                            <ul>
-                                                <li><input type="checkbox" name="product-categori"><a href="#">40x60cm (6)</a></li>
-                                                <li><input type="checkbox" name="product-categori"><a href="#">60x90cm (6)</a></li>
-                                                <li><input type="checkbox" name="product-categori"><a href="#">80x120cm (6)</a></li>
-                                            </ul>
-                                        </form>
-                                    </div>
-                                 </div>
-                                <!-- filter-sub-area end -->
-                            </div>
-                            <!--sidebar-categores-box end  -->
-                            <!-- category-sub-menu start -->
-                            <div class="sidebar-categores-box mb-sm-0">
-                                <div class="sidebar-title">
-                                    <h2>Laptop</h2>
-                                </div>
-                                <div class="category-tags">
-                                    <ul>
-                                        <li><a href="# ">Devita</a></li>
-                                        <li><a href="# ">Cameras</a></li>
-                                        <li><a href="# ">Sony</a></li>
-                                        <li><a href="# ">Computer</a></li>
-                                        <li><a href="# ">Big Sale</a></li>
-                                        <li><a href="# ">Accessories</a></li>
-                                    </ul>
-                                </div>
-                                <!-- category-sub-menu end -->
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
 
-            <detail v-if="detail" :data=details></detail>
-
-            </div>
+ <detail v-if="detail" :data=details></detail>
+<comment v-if="comment" :data=replyes></comment>
+ </div>
 </template>
 
 <script>
+import comment from '../product/comment'
 import detail from '../cart/viewp'
 import pagination from "../product/pagination";
 export default {
-    components:{detail,pagination},
+    components:{detail,pagination,comment},
     data() {
         return {
             all:{},
              details:{},
             pagination:{},
+            comment: false,
+            replyes:'',
             meta:{},
-            form:{
-
-            },
             detail:false,
             show:true ,
+            addCart:true,
+            cancelCart:false,
 
-        }
+            }
     },
 created(){
 this.get();
-
 },
+
     methods:{
+        promp(){
+            alert('new functions');
+        },
+        wishlist(prd){
+            EventBus.$emit('wishes',prd);
+
+        },
+        addtocart(prd){
+
+            EventBus.$emit('start',prd) ;
+            this.addtocart = false ;
+            this.cancelCart= true ;
+        },
+
+        quickComment(id){
+            axios.get(`/api/reply/${id}`).then(
+                res => {
+                    this.replyes = res.data;
+                }
+            )
+            this.comment = true ;
+            this.show = false ;
+        },
         added(id){
+
+            EventBus.$emit('addtocart');
             axios.get(`/api/product-detail/${id}`).then(res =>{
                 EventBus.$emit('showp');
                 this.details =res.data.data;
@@ -364,8 +256,8 @@ this.get();
       })
 
             .then(res => {
-this.all = res.data.data ;
-this.meta = res.data.meta ;
+this.all =  res.data.product.data ;
+this.meta = res.data.product  ;
 
             });
 

@@ -1,8 +1,6 @@
 <template>
 
 <div>
-
-
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
@@ -45,16 +43,18 @@
                                         </p>
                                     </div>
                                     <div class="single-add-to-cart">
-                                        <form action="#" class="cart-quantity">
+                                        <form >
+
                                             <div class="quantity">
                                                 <label>Quantity</label>
                                                 <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="1" type="text">
+                                                    <input class="cart-plus-minus-box"  v-model="form.quantity"  type="number">
                                                     <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
                                                     <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
                                                 </div>
                                             </div>
-                                            <button class="add-to-cart mt-xs-30" type="submit">Add to cart</button>
+                                              <label>Stock : {{data.stock}}</label>
+                                            <button class="add-to-cart mt-xs-30"  @click.prevent="submites" >Add to cart</button>
                                         </form>
                                     </div>
                                     <div class="product-additional-info">
@@ -142,17 +142,40 @@
 </template>
 
 <script>
-import review from '../comment/review'
+
 import carousel from 'vue-owl-carousel'
 export default {
     props:['data'],
-    components:{review,carousel },
+    components:{carousel },
     data() {
         return {
             images : this.data.image ,
             cat : this.data.relateProducts,
+            form:{
+                products_id:this.data.product.id,
+                 product_name: this.data.product.p_name,
+                product_code:this.data.product.p_code,
+                image: this.data.product.image ,
+                price: this.data.product.price,
+                quantity:'',
+                stock:this.data.stock
+
+
+
+              }
         }
     },
+    methods:{
+        submites(){
+            axios.post('api/addToCart',this.form).then( res => {
+                alert('SUMBITED');
+                console.log(res.data);
+            }).
+            catch(error => {
+                alert(console.log(error));
+            })
+        }
+    }
 
 
 }

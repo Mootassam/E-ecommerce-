@@ -12,10 +12,13 @@ import AboutUs from "./components/frontend/Content/AboutUs"
 import FAQ from "./components/frontend/Content/FAQ"
 import contents from "./components/frontend/Content/content"
 import viewCart from './components/frontend/cart/viewCart'
+import login from './components/frontend/auth/login'
+import wishlist from './components/frontend/cart/wishlist'
 
 const router = new VueRouter({
 
     hash: false,
+    mode: 'history',
     routes: [
 
         { path: '/product/index', component: index },
@@ -31,8 +34,9 @@ const router = new VueRouter({
         { path: '/homes', component: contents },
 
 
-
-        { path: '/shopping-cart', component: viewCart }
+        { path: '/logIn', component: login },
+        { path: '/shopping-cart', component: viewCart },
+        { path: '/wishlist', component: wishlist }
 
 
 

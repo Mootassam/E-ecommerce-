@@ -37,18 +37,8 @@
                                 </div>
 
 
+<paginate :meta="meta" v-on:pagination="getAll" ></paginate>
 
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item active"><a class="page-link " href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
                             </div>
                             <detail v-if="details == true" :data=id></detail>
                         </div>
@@ -58,13 +48,15 @@
 
 <script>
 import detail from './detail'
+import paginate from './paginate'
 export default {
-components:{detail},
+components:{detail,paginate },
 data() {
 
     return {
         show:true,
         details:false,
+        meta:{},
         allP:{},
         id:'',
     }
@@ -75,9 +67,16 @@ created(){
 },
 methods:{
 
-    getAll(){
-        axios.get('http://localhost:8000/api/product')
-        .then(res => { this.allP =res.data})
+    getAll(page){
+        axios.get('api/product',{
+            params:{
+                page
+            }
+        })
+        .then(res => {
+            this.allP =res.data.product.data
+            this.meta = res.data.product
+            })
         .catch(error => console.log(error))
     },
     detail(id){

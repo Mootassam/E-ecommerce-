@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Image;
+use App\Product;
 use App\Orders_model;
 use App\Category_model;
 use App\Products_model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Resources\Products_modelRessource;
 
 class ProductsController extends Controller
 {
@@ -20,8 +22,8 @@ class ProductsController extends Controller
     {
         $menu_active=3;
         $i=0;
-        $products=Products_model::orderBy('created_at','desc')->get();
-        return $products;
+        $products=Products_modelRessource::collection(Product::orderBy('created_at','desc')->paginate(9));
+        return ['product' => $products];
     }
 
     public function order(){
@@ -59,7 +61,7 @@ class ProductsController extends Controller
             'p_color'=>'required',
             'description'=>'required',
             'price'=>'required|numeric',
-            'image'=>'required|image|mimes:png,jpg,jpeg|max:1000000',
+
         ]);
         $formInput=$request->all();
         if($request->file('image')){
@@ -88,7 +90,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $products=Products_model::where('id',$id)->get();
+        $products=Product::where('id',$id)->get();
 
         return $products ;
 
@@ -106,7 +108,7 @@ class ProductsController extends Controller
     {
         $menu_active=3;
         $categories=Category_model::where('parent_id',0)->pluck('name','id')->all();
-        $edit_product=Products_model::findOrFail($id);
+        $edit_product=Product::findOrFail($id);
         $edit_category=Category_model::findOrFail($edit_product->categories_id);
         return view('backEnd.products.edit',compact('edit_product','menu_active','categories','edit_category'));
     }
@@ -120,7 +122,7 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update_product=Products_model::findOrFail($id);
+        $update_product=Product::findOrFail($id);
         $this->validate($request,[
             'p_name'=>'required|min:5',
             'p_code'=>'required',
@@ -160,7 +162,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $delete=Products_model::findOrFail($id);
+        $delete=Product::findOrFail($id);
         $image_large=public_path().'/products/large/'.$delete->image;
         $image_medium=public_path().'/products/medium/'.$delete->image;
         $image_small=public_path().'/products/small/'.$delete->image;
@@ -173,7 +175,7 @@ class ProductsController extends Controller
     }
     public function deleteImage($id){
         //Products_model::where(['id'=>$id])->update(['image'=>'']);
-        $delete_image=Products_model::findOrFail($id);
+        $delete_image=Product::findOrFail($id);
         $image_large=public_path().'/products/large/'.$delete_image->image;
         $image_medium=public_path().'/products/medium/'.$delete_image->image;
         $image_small=public_path().'/products/small/'.$delete_image->image;

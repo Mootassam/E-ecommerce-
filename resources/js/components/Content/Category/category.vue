@@ -60,9 +60,13 @@
                                         <div class="form-group row">
                                             <label for="inputPassword2" class="col-3 col-lg-2 col-form-label text-right">Category Lavel</label>
                                             <div class="col-9 col-lg-10">
+
                                                 <select    v-model="form.parent_id"  class="form-control">
-                                                    <option  v-for="val in parent " :key="val.id" v-bind:value="val.id">{{val.name}}</option>
+                         <option   v-for="val in parent.cat " :key="val.id" v-bind:value="val.id">{{val}}</option>
+                        <option   v-for="val in parent.subcat " :key="val.id" v-bind:value="val.id">-- -- {{val.name}}</option>
+
                                                 </select>
+
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -102,9 +106,9 @@
 </template>
 
 <script>
-import show from './addCat'
+
 export default {
-    components:{show},
+
 
     data() {
         return {
@@ -124,6 +128,7 @@ export default {
             add:true,
             news:'',
             parent:'',
+            subparent:'',
             id:'',
         }
     },
@@ -133,7 +138,7 @@ export default {
     },
     methods:{
             get(){
-    axios.get('http://localhost:8000/api/category')
+    axios.get('api/category')
     .then( res=> {
 
         this.categorys=res.data })
@@ -219,7 +224,10 @@ export default {
 
             },
             getparent(){
-                axios.get('http://localhost:8000/api/parentcategory').then(res => {this.parent = res.data }).catch(error =>{ console.log('error')})
+                axios.get('api/parentcategory')
+                .then(res => {this.parent = res.data
+            })
+                .catch(error =>{ console.log('error')})
              }
     }
 
