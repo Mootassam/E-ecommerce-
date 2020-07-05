@@ -44,18 +44,12 @@
         <link rel="stylesheet" href="{{asset('css/fronts/css/responsive.css')}}">
         <!-- Modernizr js -->
         <script src="{{asset('js/jsf/vendor/modernizr-2.8.3.min.js')}}"></script>
-
-
     </head>
     <body>
         <div class="body-wrapper" id="app">
-
 <site-component></site-component>
-
 <router-view></router-view>
-
 <foot-component></foot-component>
-
         </div>
     <!-- Body Wrapper End Here -->
     <!-- jQuery-V1.12.4 -->
@@ -74,7 +68,6 @@
     <!-- Wow.min js -->
     <script src="{{asset('js/jsf/wow.min.js')}}"></script>
     <!-- Slick Carousel js -->
-    <script src="{{asset('js/jsf/js/slick.min.js')}}"></script>
     <!-- Owl Carousel-2 js -->
     <script src="{{asset('js/jsf/owl.carousel.min.js')}}"></script>
     <!-- Magnific popup js -->

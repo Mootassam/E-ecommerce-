@@ -6,7 +6,7 @@
                             <form action="#">
                                 <div class="table-content table-responsive">
                                     <table class="table">
-                                        <thead>
+                                         <thead>
                                             <tr>
                                                 <th class="li-product-remove">remove</th>
                                                 <th class="li-product-thumbnail">images</th>

@@ -36,11 +36,17 @@ class ProductAtrrController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'sku'=>'required',
-            'size'=>'required',
-            'price'=>'required|numeric|between:0,99.99',
-            'stock'=>'required|numeric'
+            'system'=>'required|min:5',
+            'ecran'=>'required',
+            'photo'=>'required',
+            'reseaux'=>'required',
+            'poids'=>'required',
+            'battery'=>'required',
+            'Processeur'=>'required',
+            'memoire'=>'required',
+
         ]);
+
         ProductAtrr_model::create($request->all());
         return back()->with('message','Add Attribute Successed');
     }
@@ -82,8 +88,9 @@ class ProductAtrrController extends Controller
         $request_data=$request->all();
         foreach ($request_data['id'] as $key=>$attr){
             $update_attr=ProductAtrr_model::where([['products_id',$id],['id',$request_data['id'][$key]]])
-                ->update(['sku'=>$request_data['sku'][$key],'size'=>$request_data['size'][$key],'price'=>$request_data['price'][$key],
-                    'stock'=>$request_data['stock'][$key]]);
+                ->update(['system'=>$request_data['system'][$key],'ecran'=>$request_data['ecran'][$key],'photo'=>$request_data['photo'][$key],
+                    'reseaux'=>$request_data['reseaux'][$key],'poids'=>$request_data['poids'][$key],'battery'=>$request_data['battery'][$key]
+                    ,'Processeur'=>$request_data['Processeur'][$key],'memoire'=>$request_data['memoire'][$key] ]);
         }
         return back()->with('message','Update Attribute Successed');
     }

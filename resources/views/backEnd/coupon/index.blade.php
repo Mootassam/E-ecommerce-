@@ -1,19 +1,23 @@
 @extends('backEnd.layouts.master')
-@section('title','List Coupons')
+
 @section('content')
-    <div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('coupon.index')}}" class="current">Coupons</a></div>
-    <div class="container-fluid">
+
         @if(Session::has('message'))
             <div class="alert alert-success text-center" role="alert">
                 <strong>Well done!</strong> {{Session::get('message')}}
             </div>
         @endif
-        <div class="widget-box">
-            <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-                <h5>List Products</h5>
-            </div>
-            <div class="widget-content nopadding">
-                <table class="table table-bordered data-table">
+
+     <div class="row">
+                    <!-- ============================================================== -->
+                    <!-- basic table  -->
+                    <!-- ============================================================== -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Basic Table</h5>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered first">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -46,6 +50,11 @@
                     @endforeach
                     </tbody>
                 </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+     </div>
             </div>
         </div>
     </div>

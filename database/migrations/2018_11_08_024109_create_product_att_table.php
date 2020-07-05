@@ -16,10 +16,14 @@ class CreateProductAttTable extends Migration
         Schema::create('product_att', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('products_id');
-            $table->string('sku');
-            $table->string('size');
-            $table->float('price');
-            $table->integer('stock');
+            $table->text('system');
+            $table->text('ecran');
+            $table->text('photo');
+            $table->text('reseaux');
+            $table->text('poids');
+            $table->text('battery');
+            $table->text('Processeur');
+            $table->text('memoire');
             $table->timestamps();
         });
     }

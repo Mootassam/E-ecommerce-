@@ -3,7 +3,7 @@ import AppStorage from './AppStorage'
 class User {
 
     login(data) {
-        axios.post('/api/auth/login', data)
+        axios.post('/api/login', data)
             .then(res => {
                 this.responseAfterLogin(res)
             })

@@ -1,132 +1,166 @@
 @extends('backEnd.layouts.master')
 @section('title','Add Attribute')
 @section('content')
-    <div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('product.index')}}">Products</a> <a href="#" class="current">Add Attribute</a> </div>
     <div class="container-fluid">
         @if(Session::has('message'))
             <div class="alert alert-success text-center" role="alert">
                 <strong>Well done! &nbsp;</strong>{{Session::get('message')}}
             </div>
         @endif
-            <div class="row-fluid">
-                <div class="span6">
-                    <div class="widget-box">
-                        <div class="widget-title"> <span class="icon"> <i class="icon-file"></i> </span>
-                            <h5>Product : {{$product->p_name}}</h5>
-                        </div>
-                        <div class="widget-content nopadding">
-                            <ul class="recent-posts">
-                                <li>
-                                    <div class="user-thumb"> <img width="40" height="40" alt="User" src="{{url('products/small',$product->image)}}"> </div>
-                                    <div class="article-post">
-                                        <span class="user-info">Product Code : <b>{{$product->p_code}}</b></span>
-                                        <p>Product Color : <b>{{$product->p_color}}</b></p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <form action="{{route('product_attr.store')}}" method="post" role="form">
-                                        <legend>Add Attribute</legend>
-                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                        <div class="form-group">
-                                            <input type="hidden" name="products_id" value="{{$product->id}}">
-                                            <input type="text" class="form-control" name="sku" value="{{old('sku')}}" id="sku" placeholder="SKU" required>
-                                            <input type="text" class="form-control" name="size" value="{{old('size')}}" id="size" placeholder="Size" required>
-                                            <input type="text" class="form-control" name="price" value="{{old('price')}}" id="price" placeholder="Price" required>
-                                            <span style="color: red;">{{$errors->first('price')}}</span>
-                                            <input type="number" class="form-control" name="stock" value="{{old('stock')}}" id="stock" placeholder="Stock" required>
-                                        </div>
-                                        <button type="submit" class="btn btn-success">Add</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="span6">
-                    <div class="widget-box">
-                        <div class="widget-title"> <span class="icon"><i class="icon-time"></i></span>
-                            <h5>List Products Attribute</h5>
-                        </div>
-                        <div class="widget-content nopadding">
-                            <form action="{{route('product_attr.update',$product->id)}}" method="post" role="form">
-                                {{method_field("PUT")}}
-                                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                <table class="table table-striped table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>SKU</th>
-                                    <th>Size</th>
-                                    <th>Price</th>
-                                    <th>Stock</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($attributes as $attribute)
-                                    <input type="hidden" name="id[]" value="{{$attribute->id}}">
-                                <tr>
-                                    <td class="taskDesc">
-                                        <input type="text" name="sku[]" id="sku" class="form-control" value="{{$attribute->sku}}" required="required" style="width: 75px;">
-                                    </td>
-                                    <td class="taskStatus">
-                                        <input type="text" name="size[]" id="size" class="form-control" value="{{$attribute->size}}" required="required" style="width: 75px;">
-                                    </td>
-                                    <td class="taskOptions">
-                                        <input type="text" name="price[]" id="price" class="form-control" value="{{$attribute->price}}" required="required" style="width: 75px;">
-                                    </td>
-                                    <td class="taskOptions">
-                                        <input type="text" name="stock[]" id="stock" class="form-control" value="{{$attribute->stock}}" required="required" style="width: 75px;">
-                                    </td>
-                                    <td style="text-align: center; ">
-                                        <button type="submit" class="btn btn-success btn-mini">Edit</button>
-                                        <a href="javascript:" rel="{{$attribute->id}}" rel1="delete-attribute" class="btn btn-danger btn-mini deleteRecord">Delete</a>
-                                    </td>
-                                </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                            </form>
-                        </div>
+        <div class="row">
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <h5 class="card-header">Basic Form</h5>
+                    <div class="card-body">
+                        <form action="{{route('product_attr.store')}}" method="post" role="form">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                            <input type="hidden" name="products_id" value="{{$product->id}}">
+
+                            <div class="form-group">
+                                <label for="inputUserName"><i class="fas fa-assistive-listening-systems"></i> Systéme d’exploitation, mémoire et applications </label>
+                               <textarea name="system" id="" class="form-control" ></textarea>
+                               <span class="text-danger">{{$errors->first('system')}}</span>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail"> <i class="fas fa-desktop"></i> Ecran</label>
+                                <textarea name="ecran" id="" class="form-control" ></textarea>
+                                <span class="text-danger">{{$errors->first('ecran')}}</span>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword"><i class="fa fa-camera-retro" aria-hidden="true"></i>
+
+                                    Appareil photo</label>
+                                <textarea name="photo" id="" class="form-control" ></textarea>
+                                <span class="text-danger">{{$errors->first('photo')}}</span>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="inputRepeatPassword"> <i class="fas fa-wifi"></i> Réseaux et connectivité</label>
+                                <textarea name="reseaux" id="" class="form-control" ></textarea>
+                                <span class="text-danger">{{$errors->first('reseaux')}}</span>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="inputRepeatPassword"> <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                                    Dimensions et poids</label>
+                                <textarea name="poids" id="" class="form-control" ></textarea>
+                                <span class="text-danger">{{$errors->first('poids')}}</span>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="inputRepeatPassword"> <i class="fas fa-battery-three-quarters"></i> Autonomie</label>
+                                <textarea name="battery" id="" class="form-control" ></textarea>
+                                <span class="text-danger">{{$errors->first('battery')}}</span>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="inputRepeatPassword"> <i class="fas fa-microchip"></i> Processeur:</label>
+                                <textarea name="Processeur" id="" class="form-control" ></textarea>
+                                <span class="text-danger">{{$errors->first('Processeur')}}</span>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="inputRepeatPassword"> <i class="fas fa-hdd" aria-hidden="true"></i> Memoire</label>
+                                <textarea name="memoire" id="" class="form-control" ></textarea>
+                                <span class="text-danger">{{$errors->first('memoire')}}</span>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-sm-6 pl-0">
+                                    <p class="text-right">
+                                        <button type="submit" class="btn btn-space btn-success">Submit</button>
+                                        <button class="btn btn-space btn-secondary">cancel</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+
+        <div class="col-lg-8">
+
+            <div class="tab-vertical">
+                <ul class="nav nav-tabs" id="myTab3" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-vertical-tab" data-toggle="tab" href="#home-vertical" role="tab" aria-controls="home" aria-selected="true">Atrributes Produits </a>
+                    </li>
+
+                </ul>
+                <div class="tab-content" id="myTabContent3">
+
+                        <h5 class="card-header">Mise a jour les attribues </h5>
+                        <div class="card-body">
+                            <form action="{{route('product_attr.update',$product->id)}}" method="post" role="form">
+                                {{method_field("PUT")}}
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                @foreach($attributes as $attribute)
+                                <input type="hidden" name="id[]" value="{{$attribute->id}}" >
+                                <div class="form-group">
+                                    <label for="inputUserName"><i class="fas fa-assistive-listening-systems"></i> Systéme d’exploitation, mémoire et applications </label>
+
+                                    <textarea name="system[]"  value="{{$attribute->system}}"id="" class="form-control" >{{$attribute->system}}</textarea>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail"> <i class="fas fa-desktop"></i> Ecran</label>
+                                    <textarea name="ecran[]"  value="{{$attribute->ecran}}"id="" class="form-control" >{{$attribute->ecran}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword"><i class="fa fa-camera-retro" aria-hidden="true"></i>
+
+                                        Appareil photo</label>
+                                    <textarea name="photo[]" value="{{$attribute->photo}}" id="" class="form-control" >{{$attribute->photo}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputRepeatPassword"> <i class="fas fa-wifi"></i> Réseaux et connectivité</label>
+                                    <textarea name="reseaux[]"  value="{{$attribute->reseaux}}"  id="" class="form-control" >{{$attribute->reseaux}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputRepeatPassword"> <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                                        Dimensions et poids</label>
+                                    <textarea name="poids[]" id=""  value="{{$attribute->poids}}" class="form-control" >{{$attribute->poids}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputRepeatPassword"> <i class="fas fa-battery-three-quarters"></i> Autonomie</label>
+                                    <textarea name="battery" id=""  value="{{$attribute->battery}}" class="form-control" >{{$attribute->battery}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputRepeatPassword"> <i class="fas fa-microchip"></i> Processeur:</label>
+                                    <textarea name="Processeur[]" id=""  value="{{$attribute->Processeur}}" class="form-control" >{{$attribute->Processeur}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputRepeatPassword"> <i class="fas fa-hdd" aria-hidden="true"></i> Memoire</label>
+                                    <textarea name="memoire[]" id=""  value="{{$attribute->memoire}}" class="form-control" >{{$attribute->memoire}}</textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
+                                        <label class="be-checkbox custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Remember me</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-6 pl-0">
+                                        <p class="text-right">
+                                            <button type="submit" class="btn btn-space btn-primary">Edit</button>
+                                            <button class="btn btn-space btn-secondary">Delete</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </form>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     </div>
 @endsection
-@section('jsblock')
-    <script src="{{asset('js/jquery.min.js')}}"></script>
-    <script src="{{asset('js/jquery.ui.custom.js')}}"></script>
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap-colorpicker.js')}}"></script>
-    <script src="{{asset('js/jquery.toggle.buttons.js')}}"></script>
-    <script src="{{asset('js/masked.js')}}"></script>
-    <script src="{{asset('js/jquery.uniform.js')}}"></script>
-    <script src="{{asset('js/select2.min.js')}}"></script>
-    <script src="{{asset('js/matrix.js')}}"></script>
-    <script src="{{asset('js/matrix.form_common.js')}}"></script>
-    <script src="{{asset('js/wysihtml5-0.3.0.js')}}"></script>
-    <script src="{{asset('js/jquery.peity.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap-wysihtml5.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    <script>
-        $(".deleteRecord").click(function () {
-            var id=$(this).attr('rel');
-            var deleteFunction=$(this).attr('rel1');
-            swal({
-                title:'Are you sure?',
-                text:"You won't be able to revert this!",
-                type:'warning',
-                showCancelButton:true,
-                confirmButtonColor:'#3085d6',
-                cancelButtonColor:'#d33',
-                confirmButtonText:'Yes, delete it!',
-                cancelButtonText:'No, cancel!',
-                confirmButtonClass:'btn btn-success',
-                cancelButtonClass:'btn btn-danger',
-                buttonsStyling:false,
-                reverseButtons:true
-            },function () {
-                window.location.href="/admin/"+deleteFunction+"/"+id;
-            });
-        });
-    </script>
-@endsection
+

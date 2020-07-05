@@ -33,7 +33,8 @@ Route::group([
 
 });
 
-    // product route  //
+    // Admin routes  //
+    Route::post('/login','UsersController@login');
 
 Route::apiResource('/category','CategoryController');
 Route::apiResource('/coupon','CouponController');

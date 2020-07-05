@@ -17,7 +17,7 @@ class CouponController extends Controller
     {
         $menu_active=4;
         $coupons=Coupon_model::all();
-        return $coupons ;
+        return view('backEnd.coupon.index',compact('menu_active','coupons'));
     }
 
     /**
@@ -48,10 +48,8 @@ class CouponController extends Controller
         if(empty($input_data['status'])){
             $input_data['status']=0;
         }
-        $coupon= Coupon_model::create($input_data);
-
-
-
+        Coupon_model::create($input_data);
+        return back()->with('message','Add Coupon Already');
     }
 
     /**
@@ -62,7 +60,7 @@ class CouponController extends Controller
      */
     public function show($id)
     {
-        return $id;
+        //
     }
 
     /**
@@ -97,9 +95,8 @@ class CouponController extends Controller
         if(empty($input_data['status'])){
             $input_data['status']=0;
         }
-        $updtes = $update_coupon->update($input_data);
-
-
+        $update_coupon->update($input_data);
+        return redirect()->route('coupon.index')->with('message','Edit Coupon Already!');
     }
 
     /**
@@ -111,11 +108,13 @@ class CouponController extends Controller
     public function destroy($id)
     {
         $delete_coupon=Coupon_model::findOrFail($id);
-       $delete_coupon->delete();
-
+        $delete_coupon->delete();
+        return back()->with('message','Delete Coupon Already!');
     }
     public function applycoupon(Request $request){
-
+        $this->validate($request,[
+            'coupon_code'=>'required'
+        ]);
         $input_data=$request->all();
         $coupon_code=$input_data['coupon_code'];
         $total_amount_price=$input_data['Total_amountPrice'];

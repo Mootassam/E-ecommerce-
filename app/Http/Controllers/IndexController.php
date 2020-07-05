@@ -14,7 +14,7 @@ class IndexController extends Controller
 {
     public function index(){
         $products=Products_model::all();
-        return view('frontEnd.index',compact('products'));
+        return view('index',compact('products'));
     }
 
     public function homes(){

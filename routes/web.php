@@ -11,10 +11,6 @@
 |
 */
 /* FrontEnd Location */
-
-Route::view('/{any}', 'index');
-Route::view('/{any1}/{any2}', 'index');
-
 Route::get('/','IndexController@index');
 Route::get('/list-products','IndexController@shop');
 Route::get('/cat/{id}','IndexController@listByCat')->name('cats');
@@ -30,7 +26,7 @@ Route::get('/cart/update-quantity/{id}/{quantity}','CartController@updateQuantit
 /// Apply Coupon Code
 Route::post('/apply-coupon','CouponController@applycoupon');
 /// Simple User Login /////
-Route::get('/login_page','UsersControll@er@index');
+Route::get('/login_page','UsersController@index');
 Route::post('/register_user','UsersController@register');
 Route::post('/user_login','UsersController@login');
 Route::get('/logout','UsersController@logout');
@@ -66,7 +62,6 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function (){
     Route::get('delete-category/{id}','CategoryController@destroy');
     Route::get('/check_category_name','CategoryController@checkCateName');
     /// Products Area
-    Route::get('Singleproduct/{id}',"ProductsController@detail");
     Route::resource('/product','ProductsController');
     Route::get('delete-product/{id}','ProductsController@destroy');
     Route::get('delete-image/{id}','ProductsController@deleteImage');
@@ -81,3 +76,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function (){
     Route::get('delete-coupon/{id}','CouponController@destroy');
 ///
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

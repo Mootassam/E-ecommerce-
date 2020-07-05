@@ -52459,10 +52459,9 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 
     hash: false,
     mode: 'history',
-    routes: [{ path: '/product/index', component: __WEBPACK_IMPORTED_MODULE_2__components_Content_Product_index___default.a }, { path: '/Home', component: __WEBPACK_IMPORTED_MODULE_3__components_Content_Dashbord_dashbord___default.a }, { path: '/category/index', component: __WEBPACK_IMPORTED_MODULE_5__components_Content_Category_category___default.a }, { path: '/coupon/index', component: __WEBPACK_IMPORTED_MODULE_4__components_Content_Coupon_coupon___default.a }, { path: '/profile', component: __WEBPACK_IMPORTED_MODULE_6__components_Content_account_profile___default.a }, { path: '/Contact', component: __WEBPACK_IMPORTED_MODULE_7__components_frontend_Content_contact___default.a }, { path: '/AboutUs', component: __WEBPACK_IMPORTED_MODULE_8__components_frontend_Content_AboutUs___default.a }, { path: '/FAQ', component: __WEBPACK_IMPORTED_MODULE_9__components_frontend_Content_FAQ___default.a }, { path: '/homes', component: __WEBPACK_IMPORTED_MODULE_10__components_frontend_Content_content___default.a }, { path: '/logIn', component: __WEBPACK_IMPORTED_MODULE_12__components_frontend_auth_login___default.a }, { path: '/shopping-cart', component: __WEBPACK_IMPORTED_MODULE_11__components_frontend_cart_viewCart___default.a }, { path: '/wishlist', component: __WEBPACK_IMPORTED_MODULE_13__components_frontend_cart_wishlist___default.a }],
+    routes: [{ path: '/product/index', component: __WEBPACK_IMPORTED_MODULE_2__components_Content_Product_index___default.a }, { path: '/Home', component: __WEBPACK_IMPORTED_MODULE_3__components_Content_Dashbord_dashbord___default.a }, { path: '/category/index', component: __WEBPACK_IMPORTED_MODULE_5__components_Content_Category_category___default.a }, { path: '/coupon/index', component: __WEBPACK_IMPORTED_MODULE_4__components_Content_Coupon_coupon___default.a }, { path: '/profile', component: __WEBPACK_IMPORTED_MODULE_6__components_Content_account_profile___default.a }, { path: '/Contact', component: __WEBPACK_IMPORTED_MODULE_7__components_frontend_Content_contact___default.a }, { path: '/AboutUs', component: __WEBPACK_IMPORTED_MODULE_8__components_frontend_Content_AboutUs___default.a }, { path: '/FAQ', component: __WEBPACK_IMPORTED_MODULE_9__components_frontend_Content_FAQ___default.a }, { path: '/', component: __WEBPACK_IMPORTED_MODULE_10__components_frontend_Content_content___default.a }, { path: '/logIn', component: __WEBPACK_IMPORTED_MODULE_12__components_frontend_auth_login___default.a }, { path: '/shopping-cart', component: __WEBPACK_IMPORTED_MODULE_11__components_frontend_cart_viewCart___default.a }, { path: '/wishlist', component: __WEBPACK_IMPORTED_MODULE_13__components_frontend_cart_wishlist___default.a }],
 
     hashbang: false
-
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (router);
@@ -62361,7 +62360,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62612,30 +62611,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.comment = true;
             this.show = false;
         },
-        added: function added(id) {
-            var _this2 = this;
-
+        added: function added() {
             EventBus.$emit('addtocart');
-            axios.get('/api/product-detail/' + id).then(function (res) {
-                EventBus.$emit('showp');
-                _this2.details = res.data.data;
-
-                _this2.show = false;
-                _this2.detail = true;
-            }).catch(function (error) {
-                console.log(error);
-            });
         },
         get: function get(page) {
-            var _this3 = this;
+            var _this2 = this;
 
             axios.get('/api/homes', {
                 params: {
                     page: page
                 }
             }).then(function (res) {
-                _this3.all = res.data.product.data;
-                _this3.meta = res.data.product;
+                _this2.all = res.data.product.data;
+                _this2.meta = res.data.product;
             });
         }
     }
@@ -66772,7 +66760,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -66783,8 +66771,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -68074,7 +68060,7 @@ var User = function () {
         value: function login(data) {
             var _this = this;
 
-            axios.post('/api/auth/login', data).then(function (res) {
+            axios.post('/api/login', data).then(function (res) {
                 _this.responseAfterLogin(res);
             });
         }
@@ -70238,7 +70224,8 @@ var render = function() {
                       _vm._v(" "),
                       _c("span", { staticClass: "item-text" }, [
                         _vm._v(
-                          "£80.00\n                                        "
+                          _vm._s(_vm.totale) +
+                            " TND\n                                        "
                         ),
                         _c("span", { staticClass: "cart-item-count" }, [
                           _vm._v(_vm._s(_vm.basket))
@@ -70349,7 +70336,7 @@ var render = function() {
                     _c(
                       "li",
                       [
-                        _c("router-link", { attrs: { to: "/homes" } }, [
+                        _c("router-link", { attrs: { to: "/" } }, [
                           _c("a", [_vm._v("Accueil ")])
                         ])
                       ],

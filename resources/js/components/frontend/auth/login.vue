@@ -11,14 +11,12 @@
                                         <div class="col-md-12 col-12 mb-20">
                                             <label>Email Address*</label>
                                             <input class="mb-0" type="email" v-model="form.email" placeholder="Email Address">
-                        <span class="alert-danger" v-if="errrors.email">{{errrors.email[0]}}</span>
-
+                                           <span class="alert-danger" v-if="errrors.email">{{errrors.email[0]}}</span>
                                         </div>
                                         <div class="col-12 mb-20">
                                             <label>Password</label>
                                             <input class="mb-0" type="password" v-model="form.password" placeholder="Password">
-                        <span class="alert-danger" v-if="errrors.password">{{errrors.password[0]}}</span>
-
+                                          <span class="alert-danger" v-if="errrors.password">{{errrors.password[0]}}</span>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="check-box d-inline-block ml-0 ml-md-2 mt-10">

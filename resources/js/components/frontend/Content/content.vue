@@ -233,19 +233,8 @@ this.get();
             this.comment = true ;
             this.show = false ;
         },
-        added(id){
-
+        added(){
             EventBus.$emit('addtocart');
-            axios.get(`/api/product-detail/${id}`).then(res =>{
-                EventBus.$emit('showp');
-                this.details =res.data.data;
-
-                this.show= false ;
-                this.detail= true;
-            }).catch(error => {
-                console.log(error);
-            })
-
         },
         get(page){
 

@@ -17,9 +17,8 @@ class CategoryController extends Controller
     {
         $menu_active=0;
         $categories=Category_model::all();
-        return $categories ;
+        return view('backEnd.category.index',compact('menu_active','categories'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -31,9 +30,7 @@ class CategoryController extends Controller
         $menu_active=2;
         $plucked=Category_model::where('parent_id',0)->pluck('name','id');
         $cate_levels=['0'=>'Main Category']+$plucked->all();
-        $subCategory=DB::table('categories')->select('id','name')->where('parent_id',$key)->get();
-
-        return [ 'cat' =>$cate_levels , 'subcat' =>$subCategory];
+        return view('backEnd.category.create',compact('menu_active','cate_levels'));
     }
 
     /**
@@ -56,11 +53,11 @@ class CategoryController extends Controller
     {
         $this->validate($request,[
             'name'=>'required|max:255|unique:categories,name',
-
+            'url'=>'required',
         ]);
         $data=$request->all();
-        $created= Category_model::create($data);
-
+        Category_model::create($data);
+        return redirect()->route('category.index')->with('message','Added Success!');
     }
 
     /**
@@ -109,6 +106,7 @@ class CategoryController extends Controller
             $input_data['status']=0;
         }
         $update_categories->update($input_data);
+        return redirect()->route('category.index')->with('message','Updated Success!');
     }
 
     /**
@@ -117,22 +115,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function parent(){
-
-
-        $plucked=Category_model::where('parent_id',0)->pluck('name','id');
-        $cate_levels=['0'=>'Main Category']+$plucked->all();
-        foreach($cate_levels as $key=>$value){
-
-        $subCategory=Category_model::select('id','name')->where('parent_id',$key)->get();
-
-
-    }
-    return $cate_levels;
-    }
     public function destroy($id)
     {
         $delete=Category_model::findOrFail($id);
         $delete->delete();
+        return redirect()->route('category.index')->with('message','Delete Success!');
     }
 }

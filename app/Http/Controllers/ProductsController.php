@@ -22,6 +22,14 @@ class ProductsController extends Controller
     {
         $menu_active=3;
         $i=0;
+        $products=Products_model::orderBy('created_at','desc')->get();
+        return view('backEnd.products.index',compact('menu_active','products','i'));
+    }
+
+    public function Prodcutapi()
+    {
+        $menu_active=3;
+        $i=0;
         $products=Products_modelRessource::collection(Product::orderBy('created_at','desc')->paginate(9));
         return ['product' => $products];
     }
@@ -61,6 +69,7 @@ class ProductsController extends Controller
             'p_color'=>'required',
             'description'=>'required',
             'price'=>'required|numeric',
+            'amounte'=>'required|numeric',
 
         ]);
         $formInput=$request->all();

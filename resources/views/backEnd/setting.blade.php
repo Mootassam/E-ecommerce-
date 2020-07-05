@@ -13,7 +13,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="user-avatar text-center d-block">
-                    <img src="assets/images/avatar-1.jpg" alt="User Avatar" class="rounded-circle user-avatar-xxl">
+                    <img src="{{asset('css/images/avatar-2.jpg')}}" alt="User Avatar" class="rounded-circle user-avatar-xxl">
                 </div>
                 <div class="text-center">
                     <h2 class="font-24 mb-0">{{Auth::user()->name}}</h2>
@@ -79,34 +79,40 @@
 
             <div class="tab-content" id="pills-tabContent">
                 <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-                    @if(Session::has('message'))
-                        <h5 class="text-danger" style="color: #0e90d2;">{{Session::get('message')}}</h5>
 
-
-                    @endif
                 </div>
                 <div class="tab-pane fade show active" id="pills-msg" role="tabpanel" aria-labelledby="pills-msg-tab">
                     <div class="card">
+
+
                         <h5 class="card-header">Change Password</h5>
                         <div class="card-body">
-                            <form method="post" action="{{url('/admin/update-pwd')}}" name="password_validate" id="password_validate" novalidate="novalidate" >
+                            <form class="form-horizontal" method="post" action="{{url('/admin/update-pwd')}}" name="password_validate" id="password_validate" novalidate="novalidate">
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <div class="row">
                                     <div class="offset-xl-3 col-xl-6 offset-lg-3 col-lg-3 col-md-12 col-sm-12 col-12 p-4">
                                         <div class="form-group">
                                             <label for="name">Current password</label>
-                                            <input type="text" class="form-control form-control-lg" name="pwd_current" id="pwd_current"  placeholder="">
+                                            <input type="password" class="form-control form-control-lg" name="pwd_current" id="pwd_current"  placeholder="">
                                         </div>
                                         <div class="form-group">
                                             <label for="email">New Password</label>
-                                            <input type="email" class="form-control form-control-lg" name="pwd_new" id="pwd_new"  placeholder="">
+                                            <input type="password" class="form-control form-control-lg" name="pwd_new" id="pwd_new"  placeholder="">
                                         </div>
                                         <div class="form-group">
                                             <label for="subject">Confirm Password</label>
-                                            <input type="text" class="form-control form-control-lg" name="pwdnew_confirm" id="pwdnew_confirm" placeholder="">
+                                            <input type="password" class="form-control form-control-lg" name="pwdnew_confirm" id="pwdnew_confirm" placeholder="">
                                         </div>
 
                                         <button type="submit" value="Update Password"  class="btn btn-primary float-right">Update Password</button>
+
                                     </div>
+                                        @if(Session::has('message'))
+                                            <h5 class="text-danger" style="color: #0e90d2;">{{Session::get('message')}}</h5>
+                                        @else
+                                            <h5>Security validation</h5>
+                                        @endif
+
                                 </div>
                             </form>
                         </div>

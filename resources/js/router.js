@@ -27,12 +27,10 @@ const router = new VueRouter({
         { path: '/coupon/index', component: coupon },
         { path: '/profile', component: profile },
 
-
         { path: '/Contact', component: contact },
         { path: '/AboutUs', component: AboutUs },
         { path: '/FAQ', component: FAQ },
-        { path: '/homes', component: contents },
-
+        { path: '/', component: contents },
 
         { path: '/logIn', component: login },
         { path: '/shopping-cart', component: viewCart },
@@ -43,7 +41,6 @@ const router = new VueRouter({
     ],
 
     hashbang: false,
-
 })
 
 export default router

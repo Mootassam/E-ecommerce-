@@ -165,7 +165,7 @@
                                         <li class="hm-minicart">
                                             <div class="hm-minicart-trigger">
                                                 <span class="item-icon"></span>
-                                                <span class="item-text">£80.00
+                                                <span class="item-text">{{totale}} TND
                                                     <span class="cart-item-count">{{basket}}</span>
                                                 </span>
                                             </div>
@@ -215,7 +215,7 @@
                                <div class="hb-menu">
                                    <nav>
                                        <ul>
-                                           <li> <router-link to="/homes"><a >Accueil </a> </router-link></li>
+                                           <li> <router-link to="/"><a >Accueil </a> </router-link></li>
                                            <li> <router-link to="/AboutUs"><a>À propos de nous</a></router-link></li>
                                            <li><router-link to="/contact"><a >CONTACT</a></router-link></li>
                                            <li> <router-link to="/FAQ"><a>FAQ</a></router-link></li>
