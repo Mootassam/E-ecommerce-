@@ -28,7 +28,35 @@
                                                 <!-- Begin Blog Blockquote Area -->
                                                 <div class="li-blog-blockquote">
                                                     <blockquote>
-                                                        <p>Quisque semper nunc vitae erat pellentesque, ac placerat arcu consectetur. In venenatis elit ac ultrices convallis. Duis est nisi, tincidunt ac urna sed, cursus blandit lectus. In ullamcorper sit amet ligula ut eleifend. Proin dictum tempor ligula, ac feugiat metus. Sed finibus tortor eu scelerisque scelerisque.</p>
+                                                        <p><table class="table table-striped ">
+
+<tbody v-for="caract in this.data.data.details_product"  :key="caract.id">
+                                                          <tr>
+                                                             <td><i class="fa fa-windows" aria-hidden="true" style="font-size: 50px;" ></i>System Exploitation</td>
+                                                             <td>{{caract.system}} </td>
+                                                              <td> <i class="fa fa-wifi" aria-hidden="true"  style="font-size: 50px;" ></i>Reseaux</td>
+                                                              <td>{{caract.reseaux}}</td>
+                                                          </tr>
+                                                          <tr>
+                                                  <td><i class="fa fa-microchip" aria-hidden="true"  style="font-size: 50px;" ></i>Processeur</td>
+                                                  <td>{{caract.Processeur}}</td>
+                                                  <td><i class="fa fa-tablet" aria-hidden="true"  style="font-size: 50px;" ></i>Ecran</td>
+                                                  <td>{{caract.ecran}}</td>
+                                                          </tr>
+                                                          <tr>
+                                                <td><i class="fa fa-camera" aria-hidden="true"  style="font-size: 50px;" ></i>Appareil photo</td>
+                                                {{caract.photo}}
+                                                  <td><i class="fa fa-hdd-o" aria-hidden="true"   style="font-size: 50px;" ></i>Memoire</td>
+                                                  {{caract.memoire}}
+                                                          </tr>
+                                                              <tr>
+                                                <td><i class="fa fa-arrows-alt" aria-hidden="true" style="font-size: 50px;" ></i>Dimensions et poids</td>
+                                                {{caract.poids}}
+                                                  <td><i class="fa fa-battery-three-quarters" aria-hidden="true"   style="font-size: 50px;" ></i> Autonomie</td>
+                                                  {{caract.battery}}
+                                                          </tr>
+</tbody>
+                                                           </table></p>
                                                     </blockquote>
                                                 </div>
                                                 <!-- Blog Blockquote Area End Here -->
@@ -76,13 +104,15 @@
                                         <h3>leave a reply</h3>
                                         <p>Your email address will not be published. Required fields are marked *</p>
                                         <form @submit.prevent="comments">
-                                            <div class="comment-post-box">
+                                            <div class="comment-post-box" >
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <label>comment</label>
                                                      <input type="hidden" v-model="form.user_id">
 
                                                         <input type="hidden" v-model="form.product_id">
+                                                          <input type="hidden" v-model="form.user_id">
+
                                                         <textarea  name="commnet"  v-model="form.body" placeholder="Write a comment"></textarea>
                                                     </div>
 
@@ -113,23 +143,25 @@ export default {
     data() {
         return {
             content:this.data,
+            details:{},
             form:{
             body:'',
-            product_id: '2',
-            user_id:'2'
-
-
+            product_id: 2,
+            user_id:''
             }
         }
     },
+
 created(){
 this.comments();
+
 },
     methods: {
+
+
         comments(){
         axios.post('api/reply', this.form).then(res => {
         this.data.data.push(res.data);
-
         }).catch(error => {
 
         })

@@ -4,6 +4,7 @@
 
 use App\User;
 use App\Reply;
+use App\Model;
 use App\Product;
 
 use Faker\Generator as Faker;
@@ -14,8 +15,6 @@ $factory->define(App\Reply::class, function (Faker $faker) {
        'product_id'=>function(){
            return Product::all()->random();
        },
-       'user_id' =>function(){
-        return User::all()->random();
-        },
+       'user_id' => $faker->randomDigit()
     ];
 });

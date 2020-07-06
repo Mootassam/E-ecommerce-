@@ -36,9 +36,9 @@ class IndexController extends Controller
     public function detialpro($id){
         $detail_product=Products_model::findOrFail($id);
         $imagesGalleries=ImageGallery_model::where('products_id',$id)->get();
-        $totalStock=ProductAtrr_model::where('products_id',$id)->sum('stock');
+        $details_product=ProductAtrr_model::where('products_id',$id)->get();
         $relateProducts=Products_model::where([['id','!=',$id],['categories_id',$detail_product->categories_id]])->get();
-        return ['data' => ['product' => $detail_product, 'image' => $imagesGalleries , 'stock' => $totalStock  , 'relateProducts'=> $relateProducts]  ] ;
+        return  ['data' => [ 'details_product'=> $details_product,  'product'=> $detail_product ,'gallery'=>$imagesGalleries ]]  ;
 
     }
     public function getAttrs(Request $request){

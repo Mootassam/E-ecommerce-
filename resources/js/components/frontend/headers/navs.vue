@@ -216,10 +216,10 @@
                                    <nav>
                                        <ul>
                                            <li> <router-link to="/"><a >Accueil </a> </router-link></li>
+                                           <li> <router-link to="/Compare"><a>Compare</a></router-link></li>
                                            <li> <router-link to="/AboutUs"><a>À propos de nous</a></router-link></li>
                                            <li><router-link to="/contact"><a >CONTACT</a></router-link></li>
                                            <li> <router-link to="/FAQ"><a>FAQ</a></router-link></li>
-
                                        </ul>
                                    </nav>
                                </div>

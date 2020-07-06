@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         Factory(User::Class,10)->create();
         Factory(Products_model::Class,10)->create();
-
+        Factory(Reply::class,10)->create();
     }
 }

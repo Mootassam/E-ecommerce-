@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Reply;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -30,4 +31,10 @@ class User extends Authenticatable
     public function isAdmin(){
         return ($this->admin == 1);
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Reply');
+    }
+
 }

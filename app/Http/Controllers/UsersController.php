@@ -30,10 +30,11 @@ class UsersController extends Controller
         $input_data=$request->all();
         if(Auth::attempt(['email'=>$input_data['email'],'password'=>$input_data['password']])){
             Session::put('frontSession',$input_data['email']);
-            return view('backend.layouts.master');
 
+            return $this->respondWithToken($token);
 
-        }else{
+        }
+        else {
             return back()->with('message','Account is not Valid!');
         }
     }

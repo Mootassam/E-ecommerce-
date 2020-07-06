@@ -14,11 +14,12 @@ import contents from "./components/frontend/Content/content"
 import viewCart from './components/frontend/cart/viewCart'
 import login from './components/frontend/auth/login'
 import wishlist from './components/frontend/cart/wishlist'
-
+import compare from './components/frontend/product/compare'
 const router = new VueRouter({
 
     hash: false,
     mode: 'history',
+    base: process.env.BASE_URL,
     routes: [
 
         { path: '/product/index', component: index },
@@ -30,6 +31,7 @@ const router = new VueRouter({
         { path: '/Contact', component: contact },
         { path: '/AboutUs', component: AboutUs },
         { path: '/FAQ', component: FAQ },
+        { path: '/compare', component: compare },
         { path: '/', component: contents },
 
         { path: '/logIn', component: login },

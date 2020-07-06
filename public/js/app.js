@@ -52438,6 +52438,8 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_frontend_auth_login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_frontend_auth_login__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_frontend_cart_wishlist__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_frontend_cart_wishlist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_frontend_cart_wishlist__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_frontend_product_compare__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_frontend_product_compare___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__components_frontend_product_compare__);
 
 
 
@@ -52459,7 +52461,8 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 
     hash: false,
     mode: 'history',
-    routes: [{ path: '/product/index', component: __WEBPACK_IMPORTED_MODULE_2__components_Content_Product_index___default.a }, { path: '/Home', component: __WEBPACK_IMPORTED_MODULE_3__components_Content_Dashbord_dashbord___default.a }, { path: '/category/index', component: __WEBPACK_IMPORTED_MODULE_5__components_Content_Category_category___default.a }, { path: '/coupon/index', component: __WEBPACK_IMPORTED_MODULE_4__components_Content_Coupon_coupon___default.a }, { path: '/profile', component: __WEBPACK_IMPORTED_MODULE_6__components_Content_account_profile___default.a }, { path: '/Contact', component: __WEBPACK_IMPORTED_MODULE_7__components_frontend_Content_contact___default.a }, { path: '/AboutUs', component: __WEBPACK_IMPORTED_MODULE_8__components_frontend_Content_AboutUs___default.a }, { path: '/FAQ', component: __WEBPACK_IMPORTED_MODULE_9__components_frontend_Content_FAQ___default.a }, { path: '/', component: __WEBPACK_IMPORTED_MODULE_10__components_frontend_Content_content___default.a }, { path: '/logIn', component: __WEBPACK_IMPORTED_MODULE_12__components_frontend_auth_login___default.a }, { path: '/shopping-cart', component: __WEBPACK_IMPORTED_MODULE_11__components_frontend_cart_viewCart___default.a }, { path: '/wishlist', component: __WEBPACK_IMPORTED_MODULE_13__components_frontend_cart_wishlist___default.a }],
+    base: Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}).BASE_URL,
+    routes: [{ path: '/product/index', component: __WEBPACK_IMPORTED_MODULE_2__components_Content_Product_index___default.a }, { path: '/Home', component: __WEBPACK_IMPORTED_MODULE_3__components_Content_Dashbord_dashbord___default.a }, { path: '/category/index', component: __WEBPACK_IMPORTED_MODULE_5__components_Content_Category_category___default.a }, { path: '/coupon/index', component: __WEBPACK_IMPORTED_MODULE_4__components_Content_Coupon_coupon___default.a }, { path: '/profile', component: __WEBPACK_IMPORTED_MODULE_6__components_Content_account_profile___default.a }, { path: '/Contact', component: __WEBPACK_IMPORTED_MODULE_7__components_frontend_Content_contact___default.a }, { path: '/AboutUs', component: __WEBPACK_IMPORTED_MODULE_8__components_frontend_Content_AboutUs___default.a }, { path: '/FAQ', component: __WEBPACK_IMPORTED_MODULE_9__components_frontend_Content_FAQ___default.a }, { path: '/compare', component: __WEBPACK_IMPORTED_MODULE_14__components_frontend_product_compare___default.a }, { path: '/', component: __WEBPACK_IMPORTED_MODULE_10__components_frontend_Content_content___default.a }, { path: '/logIn', component: __WEBPACK_IMPORTED_MODULE_12__components_frontend_auth_login___default.a }, { path: '/shopping-cart', component: __WEBPACK_IMPORTED_MODULE_11__components_frontend_cart_viewCart___default.a }, { path: '/wishlist', component: __WEBPACK_IMPORTED_MODULE_13__components_frontend_cart_wishlist___default.a }],
 
     hashbang: false
 });
@@ -62360,7 +62363,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62377,8 +62380,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cart_viewp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__cart_viewp__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__product_pagination__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__product_pagination___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__product_pagination__);
-//
-//
 //
 //
 //
@@ -62580,7 +62581,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             detail: false,
             show: true,
             addCart: true,
-            cancelCart: false
+            cancelCart: false,
+            compareList: {},
+            addComp: {}
 
         };
     },
@@ -62590,6 +62593,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
+        Addtocompare: function Addtocompare(id) {
+            var _this = this;
+
+            axios.get('/api/product-detail/' + id).then(function (res) {
+                _this.compareList = res.data.data.details_product;
+                _this.storeComapre();
+            }).catch(function (error) {});
+        },
+        storeComapre: function storeComapre() {
+            var parsed = JSON.stringify(this.compareList);
+            localStorage.setItem('compare', parsed);
+        },
         promp: function promp() {
             alert('new functions');
         },
@@ -62597,33 +62612,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             EventBus.$emit('wishes', prd);
         },
         addtocart: function addtocart(prd) {
-
             EventBus.$emit('start', prd);
-            this.addtocart = false;
-            this.cancelCart = true;
         },
         quickComment: function quickComment(id) {
-            var _this = this;
+            var _this2 = this;
 
             axios.get('/api/reply/' + id).then(function (res) {
-                _this.replyes = res.data;
+                _this2.replyes = res.data;
             });
             this.comment = true;
             this.show = false;
         },
-        added: function added() {
+        detailProduct: function detailProduct(id) {
+            var _this3 = this;
+
+            axios.get('/api/product-detail/' + id).then(function (res) {
+                _this3.details = res.data;
+            }).catch(function (error) {});
+        },
+        added: function added(id) {
             EventBus.$emit('addtocart');
         },
         get: function get(page) {
-            var _this2 = this;
+            var _this4 = this;
 
             axios.get('/api/homes', {
                 params: {
                     page: page
                 }
             }).then(function (res) {
-                _this2.all = res.data.product.data;
-                _this2.meta = res.data.product;
+                _this4.all = res.data.product.data;
+                _this4.meta = res.data.product;
             });
         }
     }
@@ -62716,7 +62735,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62836,17 +62855,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['data'],
     data: function data() {
         return {
             content: this.data,
+            details: {},
             form: {
                 body: '',
-                product_id: '2',
-                user_id: '2'
-
+                product_id: 2,
+                user_id: ''
             }
         };
     },
@@ -62886,7 +62935,104 @@ var render = function() {
           _c("div", { staticClass: "col-lg-12 order-lg-2 order-1" }, [
             _c("div", { staticClass: "row li-main-content" }, [
               _c("div", { staticClass: "col-lg-12" }, [
-                _vm._m(0),
+                _c("div", { staticClass: "li-blog-single-item pb-30" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "li-blog-content" }, [
+                    _c("div", { staticClass: "li-blog-details" }, [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex."
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "li-blog-blockquote" }, [
+                        _c("blockquote", [
+                          _c("p", [
+                            _c(
+                              "table",
+                              { staticClass: "table table-striped " },
+                              _vm._l(this.data.data.details_product, function(
+                                caract
+                              ) {
+                                return _c("tbody", { key: caract.id }, [
+                                  _c("tr", [
+                                    _vm._m(3, true),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(caract.system) + " ")
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._m(4, true),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(caract.reseaux))])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(5, true),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(caract.Processeur))
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._m(6, true),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(caract.ecran))])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(7, true),
+                                    _vm._v(
+                                      "\n                                                " +
+                                        _vm._s(caract.photo) +
+                                        "\n                                                  "
+                                    ),
+                                    _vm._m(8, true),
+                                    _vm._v(
+                                      "\n                                                  " +
+                                        _vm._s(caract.memoire) +
+                                        "\n                                                          "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(9, true),
+                                    _vm._v(
+                                      "\n                                                " +
+                                        _vm._s(caract.poids) +
+                                        "\n                                                  "
+                                    ),
+                                    _vm._m(10, true),
+                                    _vm._v(
+                                      "\n                                                  " +
+                                        _vm._s(caract.battery) +
+                                        "\n                                                          "
+                                    )
+                                  ])
+                                ])
+                              }),
+                              0
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore rerum Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore rerum "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(11),
+                      _vm._v(" "),
+                      _vm._m(12)
+                    ])
+                  ])
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "li-comment-section" }, [
                   _c("h3", [_vm._v("03 comment")]),
@@ -62895,7 +63041,7 @@ var render = function() {
                     "ul",
                     _vm._l(this.data.data, function(see) {
                       return _c("li", { key: see.id }, [
-                        _vm._m(1, true),
+                        _vm._m(13, true),
                         _vm._v(" "),
                         _c("div", { staticClass: "comment-body pl-15" }, [
                           _c("h5", { staticClass: "comment-author pt-15" }, [
@@ -62904,9 +63050,9 @@ var render = function() {
                           _vm._v(" "),
                           _c("div", { staticClass: "comment-post-date" }, [
                             _vm._v(
-                              "\n                                            " +
+                              "\n                                                        " +
                                 _vm._s(see.created_at) +
-                                "\n                                        "
+                                "\n                                                    "
                             )
                           ]),
                           _vm._v(" "),
@@ -62993,6 +63139,31 @@ var render = function() {
                               }
                             }),
                             _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.user_id,
+                                  expression: "form.user_id"
+                                }
+                              ],
+                              attrs: { type: "hidden" },
+                              domProps: { value: _vm.form.user_id },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "user_id",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
                             _c("textarea", {
                               directives: [
                                 {
@@ -63022,7 +63193,7 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
-                          _vm._m(2)
+                          _vm._m(14)
                         ])
                       ])
                     ]
@@ -63041,96 +63212,185 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "li-blog-single-item pb-30" }, [
-      _c("div", { staticClass: "li-blog-banner" }, [
-        _c("a", { attrs: { href: "blog-details.html" } }, [
-          _c("img", {
-            staticClass: "img-full",
-            attrs: {
-              src: "css/fronts/images/blog-banner/bg-banner.jpg",
-              alt: ""
-            }
-          })
-        ])
+    return _c("div", { staticClass: "li-blog-banner" }, [
+      _c("a", { attrs: { href: "blog-details.html" } }, [
+        _c("img", {
+          staticClass: "img-full",
+          attrs: { src: "css/fronts/images/blog-banner/bg-banner.jpg", alt: "" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "li-blog-heading pt-25" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _vm._v("The Biggest Collection For Digital Product")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "li-blog-meta" }, [
+      _c("a", { staticClass: "author", attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-user" }),
+        _vm._v("Admin")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "li-blog-content" }, [
-        _c("div", { staticClass: "li-blog-details" }, [
-          _c("h3", { staticClass: "li-blog-heading pt-25" }, [
-            _c("a", { attrs: { href: "#" } }, [
-              _vm._v("The Biggest Collection For Digital Product")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "li-blog-meta" }, [
-            _c("a", { staticClass: "author", attrs: { href: "#" } }, [
-              _c("i", { staticClass: "fa fa-user" }),
-              _vm._v("Admin")
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "comment", attrs: { href: "#" } }, [
-              _c("i", { staticClass: "fa fa-comment-o" }),
-              _vm._v(" 3 comment")
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "post-time", attrs: { href: "#" } }, [
-              _c("i", { staticClass: "fa fa-calendar" }),
-              _vm._v(" 25 nov 2018")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex."
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "li-blog-blockquote" }, [
-            _c("blockquote", [
-              _c("p", [
-                _vm._v(
-                  "Quisque semper nunc vitae erat pellentesque, ac placerat arcu consectetur. In venenatis elit ac ultrices convallis. Duis est nisi, tincidunt ac urna sed, cursus blandit lectus. In ullamcorper sit amet ligula ut eleifend. Proin dictum tempor ligula, ac feugiat metus. Sed finibus tortor eu scelerisque scelerisque."
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore rerum Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore rerum "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "li-tag-line" }, [
-            _c("h4", [_vm._v("tag:")]),
-            _vm._v(" "),
-            _c("a", { attrs: { href: "#" } }, [_vm._v("Headphones")]),
-            _vm._v(",\n                                        "),
-            _c("a", { attrs: { href: "#" } }, [_vm._v("Video Games")]),
-            _vm._v(",\n                                        "),
-            _c("a", { attrs: { href: "#" } }, [_vm._v("Wireless Speakers")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "li-blog-sharing text-center pt-30" }, [
-            _c("h4", [_vm._v("share this post:")]),
-            _vm._v(" "),
-            _c("a", { attrs: { href: "#" } }, [
-              _c("i", { staticClass: "fa fa-facebook" })
-            ]),
-            _vm._v(" "),
-            _c("a", { attrs: { href: "#" } }, [
-              _c("i", { staticClass: "fa fa-twitter" })
-            ]),
-            _vm._v(" "),
-            _c("a", { attrs: { href: "#" } }, [
-              _c("i", { staticClass: "fa fa-pinterest" })
-            ]),
-            _vm._v(" "),
-            _c("a", { attrs: { href: "#" } }, [
-              _c("i", { staticClass: "fa fa-google-plus" })
-            ])
-          ])
-        ])
+      _c("a", { staticClass: "comment", attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-comment-o" }),
+        _vm._v(" 3 comment")
+      ]),
+      _vm._v(" "),
+      _c("a", { staticClass: "post-time", attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-calendar" }),
+        _vm._v(" 25 nov 2018")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", {
+        staticClass: "fa fa-windows",
+        staticStyle: { "font-size": "50px" },
+        attrs: { "aria-hidden": "true" }
+      }),
+      _vm._v("System Exploitation")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", {
+        staticClass: "fa fa-wifi",
+        staticStyle: { "font-size": "50px" },
+        attrs: { "aria-hidden": "true" }
+      }),
+      _vm._v("Reseaux")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", {
+        staticClass: "fa fa-microchip",
+        staticStyle: { "font-size": "50px" },
+        attrs: { "aria-hidden": "true" }
+      }),
+      _vm._v("Processeur")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", {
+        staticClass: "fa fa-tablet",
+        staticStyle: { "font-size": "50px" },
+        attrs: { "aria-hidden": "true" }
+      }),
+      _vm._v("Ecran")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", {
+        staticClass: "fa fa-camera",
+        staticStyle: { "font-size": "50px" },
+        attrs: { "aria-hidden": "true" }
+      }),
+      _vm._v("Appareil photo")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", {
+        staticClass: "fa fa-hdd-o",
+        staticStyle: { "font-size": "50px" },
+        attrs: { "aria-hidden": "true" }
+      }),
+      _vm._v("Memoire")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", {
+        staticClass: "fa fa-arrows-alt",
+        staticStyle: { "font-size": "50px" },
+        attrs: { "aria-hidden": "true" }
+      }),
+      _vm._v("Dimensions et poids")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", {
+        staticClass: "fa fa-battery-three-quarters",
+        staticStyle: { "font-size": "50px" },
+        attrs: { "aria-hidden": "true" }
+      }),
+      _vm._v(" Autonomie")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "li-tag-line" }, [
+      _c("h4", [_vm._v("tag:")]),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Headphones")]),
+      _vm._v(",\n                                                    "),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Video Games")]),
+      _vm._v(",\n                                                    "),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Wireless Speakers")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "li-blog-sharing text-center pt-30" }, [
+      _c("h4", [_vm._v("share this post:")]),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-facebook" })
+      ]),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-twitter" })
+      ]),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-pinterest" })
+      ]),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-google-plus" })
       ])
     ])
   },
@@ -64560,7 +64820,7 @@ var render = function() {
                                                           }
                                                         }
                                                       },
-                                                      [_vm._v("Add to cart")]
+                                                      [_vm._v("Ajouter")]
                                                     )
                                                   ]
                                                 ),
@@ -64589,7 +64849,38 @@ var render = function() {
                                                             "fa fa-heart-o"
                                                         }),
                                                         _vm._v(
-                                                          "Add to wishlist"
+                                                          " Ajouter à la liste de souhaits "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "li",
+                                                  { staticClass: "wishlist" },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        attrs: { href: "#" },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.Addtocompare(
+                                                              prd.id
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "fa fa-exchange"
+                                                        }),
+                                                        _vm._v(
+                                                          "Ajouter pour Comparer "
                                                         )
                                                       ]
                                                     )
@@ -64606,7 +64897,10 @@ var render = function() {
                                                         click: function(
                                                           $event
                                                         ) {
-                                                          return _vm.quickComment(
+                                                          _vm.quickComment(
+                                                            prd.id
+                                                          )
+                                                          _vm.detailProduct(
                                                             prd.id
                                                           )
                                                         }
@@ -64616,7 +64910,7 @@ var render = function() {
                                                       _c("i", {
                                                         staticClass: "fa fa-eye"
                                                       }),
-                                                      _vm._v("Quick view")
+                                                      _vm._v("Aperçu rapide")
                                                     ]
                                                   )
                                                 ])
@@ -64648,9 +64942,7 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.detail ? _c("detail", { attrs: { data: _vm.details } }) : _vm._e(),
-      _vm._v(" "),
-      _vm.comment ? _c("comment", { attrs: { data: _vm.replyes } }) : _vm._e()
+      _vm.comment ? _c("comment", { attrs: { data: _vm.details } }) : _vm._e()
     ],
     1
   )
@@ -70346,6 +70638,16 @@ var render = function() {
                     _c(
                       "li",
                       [
+                        _c("router-link", { attrs: { to: "/Compare" } }, [
+                          _c("a", [_vm._v("Compare")])
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      [
                         _c("router-link", { attrs: { to: "/AboutUs" } }, [
                           _c("a", [_vm._v("À propos de nous")])
                         ])
@@ -72207,6 +72509,417 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 193 */,
+/* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(195)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(197)
+/* template */
+var __vue_template__ = __webpack_require__(198)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/frontend/product/compare.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6977a513", Component.options)
+  } else {
+    hotAPI.reload("data-v-6977a513", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(196);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("4e5ad67f", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6977a513\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./compare.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6977a513\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./compare.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 197 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            listCompare: ''
+        };
+    },
+    created: function created() {
+        this.viewCompare();
+    },
+
+    methods: {
+        viewCompare: function viewCompare() {
+            if (localStorage.getItem('compare')) {
+                this.listCompare = JSON.parse(localStorage.getItem('compare'));
+            }
+        }
+    }
+
+});
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "compare-area pt-60 pb-60" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "compare-table table-responsive" }, [
+        _c(
+          "table",
+          { staticClass: "table table-bordered table-hover mb-0" },
+          _vm._l(_vm.listCompare, function(list, index) {
+            return _c("tbody", { key: index }, [
+              _vm._m(0, true),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("Product Name")]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("h5", { staticClass: "compare-product-name" }, [
+                    _c("a", { attrs: { href: "single-product.html" } }, [
+                      _vm._v(_vm._s(list.system))
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1, true)
+              ]),
+              _vm._v(" "),
+              _vm._m(2, true),
+              _vm._v(" "),
+              _vm._m(3, true),
+              _vm._v(" "),
+              _vm._m(4, true),
+              _vm._v(" "),
+              _vm._m(5, true),
+              _vm._v(" "),
+              _vm._m(6, true),
+              _vm._v(" "),
+              _vm._m(7, true)
+            ])
+          }),
+          0
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", { staticClass: "compare-column-titles" }, [_vm._v("Image")]),
+      _vm._v(" "),
+      _c("td", { staticClass: "compare-column-productinfo" }, [
+        _c("div", { staticClass: "compare-pdoduct-image" }, [
+          _c("a", { attrs: { href: "single-product.html" } }, [
+            _c("img", {
+              attrs: {
+                src: "images/product/large-size/1.jpg",
+                alt: "Product Image"
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "ho-button ho-button-sm",
+              attrs: { href: "cart.html" }
+            },
+            [_c("span", [_vm._v("ADD TO CART")])]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("h5", { staticClass: "compare-product-name" }, [
+        _c("a", { attrs: { href: "single-product.html" } }, [
+          _vm._v("HP Probook")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Description")]),
+      _vm._v(" "),
+      _c("td", [
+        _vm._v(
+          "Impressively thin and light, the HP Pavilion G6 empowers users to create,\n                             connect, and collaborate, using enterprise-class performance"
+        )
+      ]),
+      _vm._v(" "),
+      _c("td", [
+        _vm._v(
+          "Impressively thin and light, the HP ProBook 450 G4 empowers users to create,\n                             connect, and collaborate, using enterprise-class performance"
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Price")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("$800")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("$1020")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Color")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Black")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Red")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Size")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Medium")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Large")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Stock")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("In Stock")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Stock Out")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Rating")]),
+      _vm._v(" "),
+      _c("td", [
+        _c("div", { staticClass: "li-pro-rating li-rattingbox" }, [
+          _c("span", [_c("i", { staticClass: "fa fa-star-o" })]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "fa fa-star-o" })]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "fa fa-star-o" })]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "fa fa-star-o li-star" })]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "fa fa-star-o li-star" })])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("td", [
+        _c("div", { staticClass: "li-pro-rating li-rattingbox" }, [
+          _c("span", [_c("i", { staticClass: "fa fa-star-o" })]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "fa fa-star-o" })]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "fa fa-star-o" })]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "fa fa-star-o" })]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "fa fa-star-o li-star" })])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6977a513", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

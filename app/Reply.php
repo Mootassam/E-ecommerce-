@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reply extends Model
 {
 
-    protected $fillable =['id','body','product_id','user_id'];
+    protected $guarded =[''];
 
     protected static function boot(){
         parent::boot();

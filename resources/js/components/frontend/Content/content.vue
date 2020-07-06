@@ -155,11 +155,10 @@
                                                     <div class="col-lg-4">
                                                         <div class="shop-add-action mb-xs-30">
                                                             <ul class="add-actions-link">
-
-                     <li class="add-cart"> <a  href="#" @click="addtocart(prd)">Add to cart</a></li>
-
-                                                              <li class="wishlist"><a href="#" @click="wishlist(prd)"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-                                                                <li><a class="quick-view"  @click="quickComment(prd.id)"  href="#"><i class="fa fa-eye"></i>Quick view</a></li>
+                                                                <li class="add-cart"> <a  href="#" @click="addtocart(prd)">Ajouter</a></li>
+                                                                <li class="wishlist"><a href="#" @click="wishlist(prd)"><i class="fa fa-heart-o"></i> Ajouter à la liste de souhaits </a></li>
+                                                                <li class="wishlist"><a href="#" @click="Addtocompare(prd.id)"><i class="fa fa-exchange"></i>Ajouter pour Comparer </a></li>
+                                                                <li><a class="quick-view"  @click="quickComment(prd.id) ; detailProduct(prd.id)"  href="#"><i class="fa fa-eye"></i>Aperçu rapide</a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -179,8 +178,7 @@
                 </div>
             </div>
 
- <detail v-if="detail" :data=details></detail>
-<comment v-if="comment" :data=replyes></comment>
+<comment v-if="comment" :data=details></comment>
  </div>
 </template>
 
@@ -202,6 +200,8 @@ export default {
             show:true ,
             addCart:true,
             cancelCart:false,
+            compareList:{},
+            addComp:{},
 
             }
     },
@@ -210,6 +210,20 @@ this.get();
 },
 
     methods:{
+        Addtocompare(id){
+                axios.get(`/api/product-detail/${id}`).then(res => {
+                        this.compareList= res.data.data.details_product
+                            this.storeComapre();
+
+            }).catch(error=>{
+
+            })
+        },
+        storeComapre(){
+             let parsed = JSON.stringify(this.compareList);
+            localStorage.setItem('compare',parsed);
+        },
+
         promp(){
             alert('new functions');
         },
@@ -218,10 +232,8 @@ this.get();
 
         },
         addtocart(prd){
+      EventBus.$emit('start',prd) ;
 
-            EventBus.$emit('start',prd) ;
-            this.addtocart = false ;
-            this.cancelCart= true ;
         },
 
         quickComment(id){
@@ -233,9 +245,15 @@ this.get();
             this.comment = true ;
             this.show = false ;
         },
-        added(){
+          detailProduct(id){
+                axios.get(`/api/product-detail/${id}`).then(res => {
+                this.details= res.data;
+            }).catch(error => {
+            })
+             },
+        added(id){
             EventBus.$emit('addtocart');
-        },
+                },
         get(page){
 
       axios.get('/api/homes',{
