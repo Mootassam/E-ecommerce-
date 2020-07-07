@@ -201,41 +201,32 @@ export default {
             addCart:true,
             cancelCart:false,
             compareList:{},
-            addComp:{},
+            AllComp:[],
 
             }
     },
 created(){
 this.get();
 },
-
     methods:{
         Addtocompare(id){
                 axios.get(`/api/product-detail/${id}`).then(res => {
                         this.compareList= res.data.data.details_product
+                        this.AllComp.push(res.data.data.details_product);
                             this.storeComapre();
-
             }).catch(error=>{
-
             })
         },
         storeComapre(){
              let parsed = JSON.stringify(this.compareList);
             localStorage.setItem('compare',parsed);
         },
-
-        promp(){
-            alert('new functions');
-        },
         wishlist(prd){
             EventBus.$emit('wishes',prd);
-
         },
         addtocart(prd){
       EventBus.$emit('start',prd) ;
-
-        },
-
+      },
         quickComment(id){
             axios.get(`/api/reply/${id}`).then(
                 res => {
@@ -256,25 +247,14 @@ this.get();
                 },
         get(page){
 
-      axios.get('/api/homes',{
-          params:{
-              page
-          }
-      })
-
+      axios.get('/api/homes',{params:{ page } })
             .then(res => {
-this.all =  res.data.product.data ;
-this.meta = res.data.product  ;
-
-            });
-
-
+                        this.all =  res.data.product.data ;
+                        this.meta = res.data.product  ;
+           });
         },
-
-
-    }
-
-}
+            }
+        }
 </script>
 
 <style>

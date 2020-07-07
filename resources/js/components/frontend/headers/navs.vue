@@ -265,6 +265,7 @@ export default {
                 price:'',
                 image:'',
                 amount:'',
+                stock:'',
             },
             wishesadd:{
                 products_id:'',
@@ -295,12 +296,11 @@ export default {
     methods:{
     viewcart(){
       if(localStorage.getItem('carts')){
-          this.carts = JSON.parse(localStorage.getItem('carts'));
+        this.carts = JSON.parse(localStorage.getItem('carts'));
         this.basket= this.carts.length ;
         this.totale =this.carts.reduce((totale,item) => {
-            return totale+ item.amount * item.price
+        return totale+ item.amount * item.price
         },0)
-
       }
         },
         removeCart(index){
@@ -316,12 +316,13 @@ export default {
 
         listen(pro){
 EventBus.$on('start',(pro) => {
-  this.cartadd.products_id = pro.id ;
+    this.cartadd.products_id = pro.id ;
     this.cartadd.product_name = pro.p_name;
     this.cartadd.product_code=pro.p_code;
-     this.cartadd.price=pro.price;
+    this.cartadd.price=pro.price;
     this.cartadd.amount=this.quantity;
     this.cartadd.image=pro.image;
+    this.cartadd.stock = pro.stock ;
     this.carts.push(this.cartadd);
     this.cartadd = {};
     this.storeCart();

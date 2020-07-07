@@ -64,10 +64,19 @@
 
                     </div>
                     <div class="control-group">
-                        <label for="price" class="control-label">Quantite</label>
+
                             <div class="input-prepend"> <span class="add-on"></span>
-                                <input class="form-control"  type="number" name="amount" id="price" class="" value="{{old('amount')}}" title="" required="required">
+                                <input class="form-control"  type="hidden" name="amount" id="price" class="" value="1" title="" required="required">
                                 <span class="text-danger">{{$errors->first('amount')}}</span>
+                            </div>
+
+                    </div>
+
+                    <div class="control-group">
+                        <label for="price" class="control-label">Stock</label>
+                            <div class="input-prepend"> <span class="add-on"></span>
+                                <input class="form-control"  type="number" name="stock" id="price" class="" value="{{old('stock')}}" title="" required="required">
+                                <span class="text-danger">{{$errors->first('stock')}}</span>
                             </div>
 
                     </div>

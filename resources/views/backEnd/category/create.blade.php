@@ -44,13 +44,7 @@
                                 <textarea class="form-control"  name="description" id="description" rows="3">{{old('description')}}</textarea>
 
                         </div>
-                        <div class="control-group{{$errors->has('url')?' has-error':''}}">
-                            <label >URL (Start with http://) :</label>
 
-                                <input class="form-control"  type="text" name="url" id="url">
-                                <span class="text-danger">{{$errors->first('url')}}</span>
-
-                        </div>
                         <div class="control-group{{$errors->has('status')?' has-error':''}}">
                             <label >Enable :</label>
 

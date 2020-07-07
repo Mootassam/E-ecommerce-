@@ -204,7 +204,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="cart_item" v-for="now in order" :key="now.id">
+                                            <tr class="cart_item" v-for="now in cart" :key="now.id">
                                               <td class="cart-product-name"> {{now.product_name}}<strong class="product-quantity"> × {{now.amount}}</strong></td>
                                               <td class="cart-product-total"><span class="amount">{{ now.amount * now.price}}</span></td>
                                             </tr>
@@ -212,11 +212,12 @@
                                         <tfoot>
                                             <tr class="cart-subtotal">
                                                 <th>Cart Subtotal</th>
-                                                <td><span class="amount">{{totale}} TND </span></td>
-                                            </tr>
-                                            <tr class="order-total">
-                                                <th>Order Total</th>
                                                 <td ><strong><span class="amount">{{totale}} TND </span></strong></td>
+                                            </tr>
+                                            <tr v-if="order >0 " class="order-total">
+                                                <th>Order Total</th>
+                              <td  ><strong><span class="amount">{{order}} TND </span></strong></td>
+
                                             </tr>
                                         </tfoot>
                                     </table>

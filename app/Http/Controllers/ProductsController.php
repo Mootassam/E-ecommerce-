@@ -69,7 +69,7 @@ class ProductsController extends Controller
             'p_color'=>'required',
             'description'=>'required',
             'price'=>'required|numeric',
-            'amounte'=>'required|numeric',
+            'stock'=>'required|numeric',
 
         ]);
         $formInput=$request->all();

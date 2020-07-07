@@ -48,9 +48,11 @@
 </div>
         </div>
     </div>
+    @include('backEnd.layouts.footer')
 </div>
-@include('backEnd.layouts.footer')
+
         </div>
+
 <script src="{{asset('js/jss/jquery/jquery-3.3.1.min.js')}}"></script>
     <!-- bootstap bundle js -->
     <script src="{{asset('js/jss/bootstrap/js/bootstrap.bundle.js')}}"></script>

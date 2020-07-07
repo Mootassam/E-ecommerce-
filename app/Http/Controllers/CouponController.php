@@ -120,21 +120,25 @@ class CouponController extends Controller
         $total_amount_price=$input_data['Total_amountPrice'];
         $check_coupon=Coupon_model::where('coupon_code',$coupon_code)->count();
         if($check_coupon==0){
-            return back()->with('message_coupon','Your Coupon Code Not Exist!');
+            return response()->json('Your Coupon Code Not Exist!', 200);
         }else if($check_coupon==1){
             $check_status=Coupon_model::where('status',1)->first();
             if($check_status->status==0){
-                return back()->with('message_coupon','Your Coupon was Disabled!');
+                return response()->json('Your Coupon was Disabled!', 200);
             }else{
                 $expiried_date=$check_status->expiry_date;
                 $date_now=date('Y-m-d');
                 if($expiried_date<$date_now){
-                    return back()->with('message_coupon','Your Coupon was Expired!');
+                    return response()->json('Your Coupon was Expired!', 200);
+
                 }else{
                     $discount_amount_price=($total_amount_price*$check_status->amount)/100;
                     Session::put('discount_amount_price',$discount_amount_price);
                     Session::put('coupon_code',$check_status->coupon_code);
-                    return back()->with('message_apply_sucess','Your Coupon Code was Apply');
+
+
+                    return $discount_amount_price ;
+
                 }
             }
         }

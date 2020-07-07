@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('p_code');
             $table->string('p_color');
             $table->BigInteger('amount');
+            $table->BigInteger('stock');
             $table->text('description');
             $table->float('price');
             $table->string('image');
