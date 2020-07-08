@@ -31,7 +31,6 @@ class UsersController extends Controller
         if(Auth::attempt(['email'=>$input_data['email'],'password'=>$input_data['password']])){
             Session::put('frontSession',$input_data['email']);
 
-            return $this->respondWithToken($token);
 
         }
         else {

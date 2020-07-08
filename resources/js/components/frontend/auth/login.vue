@@ -101,7 +101,7 @@ export default {
 
     methods:{
         Login(){
-User.login(this.form)
+     User.login(this.form) ;
          },
         Register(){
 

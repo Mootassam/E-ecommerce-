@@ -178,7 +178,7 @@
                 </div>
             </div>
 
-<comment v-if="comment" :data=details></comment>
+<comment v-if="comment" :id=id :detaile=details :data=replyes></comment>
  </div>
 </template>
 
@@ -190,8 +190,10 @@ export default {
     components:{detail,pagination,comment},
     data() {
         return {
+            id:'',
             all:{},
              details:{},
+             prd_price :'',
             pagination:{},
             comment: false,
             replyes:'',
@@ -228,9 +230,11 @@ this.get();
       EventBus.$emit('start',prd) ;
       },
         quickComment(id){
-            axios.get(`/api/reply/${id}`).then(
+            const token = localStorage.getItem('token')
+            axios.get(`/api/reply/${id}/?token=`+token).then(
                 res => {
                     this.replyes = res.data;
+                    this.id = id ;
                 }
             )
             this.comment = true ;

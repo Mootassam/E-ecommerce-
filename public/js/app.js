@@ -19570,6 +19570,9 @@ window.axios = __webpack_require__(10);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+var jwtToken = 'bearer ' + localStorage.getItem('token');
+window.axios.defaults.headers.common['Authorization'] = jwtToken;
+
 try {
     window.$ = window.jQuery = __webpack_require__(5);
 
@@ -62363,7 +62366,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62572,8 +62575,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: { detail: __WEBPACK_IMPORTED_MODULE_1__cart_viewp___default.a, pagination: __WEBPACK_IMPORTED_MODULE_2__product_pagination___default.a, comment: __WEBPACK_IMPORTED_MODULE_0__product_comment___default.a },
     data: function data() {
         return {
+            id: '',
             all: {},
             details: {},
+            prd_price: '',
             pagination: {},
             comment: false,
             replyes: '',
@@ -62614,8 +62619,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         quickComment: function quickComment(id) {
             var _this2 = this;
 
-            axios.get('/api/reply/' + id).then(function (res) {
+            var token = localStorage.getItem('token');
+            axios.get('/api/reply/' + id + '/?token=' + token).then(function (res) {
                 _this2.replyes = res.data;
+                _this2.id = id;
             });
             this.comment = true;
             this.show = false;
@@ -62727,7 +62734,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62875,20 +62882,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['data'],
+    props: ['data', 'detaile', 'id'],
     data: function data() {
+        var productid = this.id;
         return {
-            content: this.data,
+
+            replys: [],
             details: {},
-            form: {
-                body: '',
-                product_id: 2,
-                user_id: ''
-            }
+            body: ''
+
         };
     },
     created: function created() {
@@ -62899,8 +62903,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         comments: function comments() {
             var _this = this;
 
-            axios.post('api/reply', this.form).then(function (res) {
-                _this.data.data.push(res.data);
+            axios.post('api/reply', { 'body': this.body, 'product_id': this.id }).then(function (res) {
+                _this.data.push(res.data);
             }).catch(function (error) {});
         }
     }
@@ -62927,113 +62931,18 @@ var render = function() {
           _c("div", { staticClass: "col-lg-12 order-lg-2 order-1" }, [
             _c("div", { staticClass: "row li-main-content" }, [
               _c("div", { staticClass: "col-lg-12" }, [
-                _c("div", { staticClass: "li-blog-single-item pb-30" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "li-blog-content" }, [
-                    _c("div", { staticClass: "li-blog-details" }, [
-                      _vm._m(1),
-                      _vm._v(" "),
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex."
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "li-blog-blockquote" }, [
-                        _c("blockquote", [
-                          _c("p", [
-                            _c(
-                              "table",
-                              { staticClass: "table table-striped " },
-                              _vm._l(this.data.data.details_product, function(
-                                caract
-                              ) {
-                                return _c("tbody", { key: caract.id }, [
-                                  _c("tr", [
-                                    _vm._m(3, true),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(caract.system) + " ")
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm._m(4, true),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(caract.reseaux))])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _vm._m(5, true),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(caract.Processeur))
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm._m(6, true),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(caract.ecran))])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _vm._m(7, true),
-                                    _vm._v(
-                                      "\n                                                " +
-                                        _vm._s(caract.photo) +
-                                        "\n                                                  "
-                                    ),
-                                    _vm._m(8, true),
-                                    _vm._v(
-                                      "\n                                                  " +
-                                        _vm._s(caract.memoire) +
-                                        "\n                                                          "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _vm._m(9, true),
-                                    _vm._v(
-                                      "\n                                                " +
-                                        _vm._s(caract.poids) +
-                                        "\n                                                  "
-                                    ),
-                                    _vm._m(10, true),
-                                    _vm._v(
-                                      "\n                                                  " +
-                                        _vm._s(caract.battery) +
-                                        "\n                                                          "
-                                    )
-                                  ])
-                                ])
-                              }),
-                              0
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore rerum Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore rerum "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(11),
-                      _vm._v(" "),
-                      _vm._m(12)
-                    ])
-                  ])
-                ]),
+                _vm._m(0),
                 _vm._v(" "),
                 _c("div", { staticClass: "li-comment-section" }, [
-                  _c("h3", [_vm._v("03 comment")]),
+                  _c("h3", [
+                    _vm._v(" " + _vm._s(this.data.length) + " comment")
+                  ]),
                   _vm._v(" "),
                   _c(
                     "ul",
-                    _vm._l(this.data.data, function(see) {
+                    _vm._l(this.data, function(see) {
                       return _c("li", { key: see.id }, [
-                        _vm._m(13, true),
+                        _vm._m(1, true),
                         _vm._v(" "),
                         _c("div", { staticClass: "comment-body pl-15" }, [
                           _c("h5", { staticClass: "comment-author pt-15" }, [
@@ -63071,7 +62980,7 @@ var render = function() {
                       on: {
                         submit: function($event) {
                           $event.preventDefault()
-                          return _vm.comments($event)
+                          return _vm.comments()
                         }
                       }
                     },
@@ -63081,111 +62990,32 @@ var render = function() {
                           _c("div", { staticClass: "col-lg-12" }, [
                             _c("label", [_vm._v("comment")]),
                             _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.user_id,
-                                  expression: "form.user_id"
-                                }
-                              ],
-                              attrs: { type: "hidden" },
-                              domProps: { value: _vm.form.user_id },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "user_id",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.product_id,
-                                  expression: "form.product_id"
-                                }
-                              ],
-                              attrs: { type: "hidden" },
-                              domProps: { value: _vm.form.product_id },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "product_id",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.user_id,
-                                  expression: "form.user_id"
-                                }
-                              ],
-                              attrs: { type: "hidden" },
-                              domProps: { value: _vm.form.user_id },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "user_id",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
                             _c("textarea", {
                               directives: [
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.body,
-                                  expression: "form.body"
+                                  value: _vm.body,
+                                  expression: "body"
                                 }
                               ],
                               attrs: {
                                 name: "commnet",
                                 placeholder: "Write a comment"
                               },
-                              domProps: { value: _vm.form.body },
+                              domProps: { value: _vm.body },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "body",
-                                    $event.target.value
-                                  )
+                                  _vm.body = $event.target.value
                                 }
                               }
                             })
                           ]),
                           _vm._v(" "),
-                          _vm._m(14)
+                          _vm._m(2)
                         ])
                       ])
                     ]
@@ -63204,185 +63034,86 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "li-blog-banner" }, [
-      _c("a", { attrs: { href: "blog-details.html" } }, [
-        _c("img", {
-          staticClass: "img-full",
-          attrs: { src: "css/fronts/images/blog-banner/bg-banner.jpg", alt: "" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "li-blog-heading pt-25" }, [
-      _c("a", { attrs: { href: "#" } }, [
-        _vm._v("The Biggest Collection For Digital Product")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "li-blog-meta" }, [
-      _c("a", { staticClass: "author", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fa fa-user" }),
-        _vm._v("Admin")
+    return _c("div", { staticClass: "li-blog-single-item pb-30" }, [
+      _c("div", { staticClass: "li-blog-banner" }, [
+        _c("a", { attrs: { href: "blog-details.html" } }, [
+          _c("img", {
+            staticClass: "img-full",
+            attrs: {
+              src: "css/fronts/images/blog-banner/bg-banner.jpg",
+              alt: ""
+            }
+          })
+        ])
       ]),
       _vm._v(" "),
-      _c("a", { staticClass: "comment", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fa fa-comment-o" }),
-        _vm._v(" 3 comment")
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "post-time", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fa fa-calendar" }),
-        _vm._v(" 25 nov 2018")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", {
-        staticClass: "fa fa-windows",
-        staticStyle: { "font-size": "50px" },
-        attrs: { "aria-hidden": "true" }
-      }),
-      _vm._v("System Exploitation")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", {
-        staticClass: "fa fa-wifi",
-        staticStyle: { "font-size": "50px" },
-        attrs: { "aria-hidden": "true" }
-      }),
-      _vm._v("Reseaux")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", {
-        staticClass: "fa fa-microchip",
-        staticStyle: { "font-size": "50px" },
-        attrs: { "aria-hidden": "true" }
-      }),
-      _vm._v("Processeur")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", {
-        staticClass: "fa fa-tablet",
-        staticStyle: { "font-size": "50px" },
-        attrs: { "aria-hidden": "true" }
-      }),
-      _vm._v("Ecran")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", {
-        staticClass: "fa fa-camera",
-        staticStyle: { "font-size": "50px" },
-        attrs: { "aria-hidden": "true" }
-      }),
-      _vm._v("Appareil photo")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", {
-        staticClass: "fa fa-hdd-o",
-        staticStyle: { "font-size": "50px" },
-        attrs: { "aria-hidden": "true" }
-      }),
-      _vm._v("Memoire")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", {
-        staticClass: "fa fa-arrows-alt",
-        staticStyle: { "font-size": "50px" },
-        attrs: { "aria-hidden": "true" }
-      }),
-      _vm._v("Dimensions et poids")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", {
-        staticClass: "fa fa-battery-three-quarters",
-        staticStyle: { "font-size": "50px" },
-        attrs: { "aria-hidden": "true" }
-      }),
-      _vm._v(" Autonomie")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "li-tag-line" }, [
-      _c("h4", [_vm._v("tag:")]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Headphones")]),
-      _vm._v(",\n                                                    "),
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Video Games")]),
-      _vm._v(",\n                                                    "),
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Wireless Speakers")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "li-blog-sharing text-center pt-30" }, [
-      _c("h4", [_vm._v("share this post:")]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fa fa-facebook" })
-      ]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fa fa-twitter" })
-      ]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fa fa-pinterest" })
-      ]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fa fa-google-plus" })
+      _c("div", { staticClass: "li-blog-content" }, [
+        _c("div", { staticClass: "li-blog-details" }, [
+          _c("h3", { staticClass: "li-blog-heading pt-25" }, [
+            _c("a", { attrs: { href: "#" } }, [
+              _vm._v("The Biggest Collection For Digital Product")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "li-blog-meta" }, [
+            _c("a", { staticClass: "author", attrs: { href: "#" } }, [
+              _c("i", { staticClass: "fa fa-user" }),
+              _vm._v("Admin")
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "comment", attrs: { href: "#" } }, [
+              _c("i", { staticClass: "fa fa-comment-o" }),
+              _vm._v(" 3 comment")
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "post-time", attrs: { href: "#" } }, [
+              _c("i", { staticClass: "fa fa-calendar" }),
+              _vm._v(" 25 nov 2018")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore rerum Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore rerum "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "li-tag-line" }, [
+            _c("h4", [_vm._v("tag:")]),
+            _vm._v(" "),
+            _c("a", { attrs: { href: "#" } }, [_vm._v("Headphones")]),
+            _vm._v(",\n                                                    "),
+            _c("a", { attrs: { href: "#" } }, [_vm._v("Video Games")]),
+            _vm._v(",\n                                                    "),
+            _c("a", { attrs: { href: "#" } }, [_vm._v("Wireless Speakers")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "li-blog-sharing text-center pt-30" }, [
+            _c("h4", [_vm._v("share this post:")]),
+            _vm._v(" "),
+            _c("a", { attrs: { href: "#" } }, [
+              _c("i", { staticClass: "fa fa-facebook" })
+            ]),
+            _vm._v(" "),
+            _c("a", { attrs: { href: "#" } }, [
+              _c("i", { staticClass: "fa fa-twitter" })
+            ]),
+            _vm._v(" "),
+            _c("a", { attrs: { href: "#" } }, [
+              _c("i", { staticClass: "fa fa-pinterest" })
+            ]),
+            _vm._v(" "),
+            _c("a", { attrs: { href: "#" } }, [
+              _c("i", { staticClass: "fa fa-google-plus" })
+            ])
+          ])
+        ])
       ])
     ])
   },
@@ -64934,7 +64665,11 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.comment ? _c("comment", { attrs: { data: _vm.details } }) : _vm._e()
+      _vm.comment
+        ? _c("comment", {
+            attrs: { id: _vm.id, detaile: _vm.details, data: _vm.replyes }
+          })
+        : _vm._e()
     ],
     1
   )
@@ -68773,7 +68508,7 @@ var User = function () {
         value: function login(data) {
             var _this = this;
 
-            axios.post('/api/login', data).then(function (res) {
+            axios.post('/api/auth/login', data).then(function (res) {
                 _this.responseAfterLogin(res);
             });
         }
@@ -68784,13 +68519,12 @@ var User = function () {
             var user = res.data.user;
             if (__WEBPACK_IMPORTED_MODULE_0__Token__["a" /* default */].isToken(access_token)) {
                 __WEBPACK_IMPORTED_MODULE_1__AppStorage__["a" /* default */].store(user, access_token);
-                window.location = '/homes';
+                window.location = '/';
             }
         }
     }, {
         key: 'hasToken',
         value: function hasToken() {
-
             var storedToken = __WEBPACK_IMPORTED_MODULE_1__AppStorage__["a" /* default */].getToken();
             if (storedToken) {
                 return __WEBPACK_IMPORTED_MODULE_0__Token__["a" /* default */].isToken(storedToken) ? true : false;
@@ -70469,7 +70203,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -70756,7 +70490,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 image: ''
             },
             wishes: [],
-            heart: 0
+            heart: 0,
+            quicksearch: ''
 
         };
     },
@@ -70773,6 +70508,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        searchs: function searchs() {
+            axios.get('/api/product/search', this.quicksearch).then(function (res) {}).catch(function (error) {});
+        },
         viewcart: function viewcart() {
             if (localStorage.getItem('carts')) {
                 this.carts = JSON.parse(localStorage.getItem('carts'));
@@ -70908,7 +70646,48 @@ var render = function() {
             _vm._m(3),
             _vm._v(" "),
             _c("div", { staticClass: "col-lg-9 pl-0 ml-sm-15 ml-xs-15" }, [
-              _vm._m(4),
+              _c(
+                "form",
+                {
+                  staticClass: "hm-searchbox",
+                  attrs: { action: "#" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.searchs()
+                    }
+                  }
+                },
+                [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.quicksearch,
+                        expression: "quicksearch"
+                      }
+                    ],
+                    attrs: {
+                      type: "text",
+                      placeholder: "Enter your search key ..."
+                    },
+                    domProps: { value: _vm.quicksearch },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.quicksearch = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(5)
+                ]
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "header-middle-right" }, [
                 _c("ul", { staticClass: "hm-menu" }, [
@@ -70956,7 +70735,7 @@ var render = function() {
                         { staticClass: "minicart-product-list" },
                         _vm._l(_vm.carts, function(cart, index) {
                           return _c("li", { key: cart.id }, [
-                            _vm._m(5, true),
+                            _vm._m(6, true),
                             _vm._v(" "),
                             _c(
                               "div",
@@ -71106,7 +70885,7 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _vm._m(6)
+    _vm._m(7)
   ])
 }
 var staticRenderFns = [
@@ -71209,252 +70988,220 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("form", { staticClass: "hm-searchbox", attrs: { action: "#" } }, [
-      _c("select", { staticClass: "nice-select select-search-category" }, [
-        _c("option", { attrs: { value: "0" } }, [_vm._v("All")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "10" } }, [_vm._v("Laptops")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "17" } }, [_vm._v("- -  Prime Video")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "20" } }, [
-          _vm._v("- - - -  All Videos")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "21" } }, [_vm._v("- - - -  Blouses")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "22" } }, [
-          _vm._v("- - - -  Evening Dresses")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "23" } }, [
-          _vm._v("- - - -  Summer Dresses")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "24" } }, [_vm._v("- - - -  T-shirts")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "25" } }, [
-          _vm._v("- - - -  Rent or Buy")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "26" } }, [
-          _vm._v("- - - -  Your Watchlist")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "27" } }, [
-          _vm._v("- - - -  Watch Anywhere")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "28" } }, [
-          _vm._v("- - - -  Getting Started")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "18" } }, [
-          _vm._v("- - - -  Computers")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "29" } }, [
-          _vm._v("- - - -  More to Explore")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "30" } }, [
-          _vm._v("- - - -  TV & Video")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "31" } }, [
-          _vm._v("- - - -  Audio & Theater")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "32" } }, [
-          _vm._v("- - - -  Camera, Photo ")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "33" } }, [
-          _vm._v("- - - -  Cell Phones")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "34" } }, [
-          _vm._v("- - - -  Headphones")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "35" } }, [
-          _vm._v("- - - -  Video Games")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "36" } }, [
-          _vm._v("- - - -  Wireless Speakers")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "19" } }, [
-          _vm._v("- - - -  Electronics")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "37" } }, [
-          _vm._v("- - - -  Amazon Home")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "38" } }, [
-          _vm._v("- - - -  Kitchen & Dining")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "39" } }, [
-          _vm._v("- - - -  Furniture")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "40" } }, [
-          _vm._v("- - - -  Bed & Bath")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "41" } }, [
-          _vm._v("- - - -  Appliances")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "11" } }, [_vm._v("TV & Audio")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "42" } }, [_vm._v("- -  Chamcham")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "45" } }, [_vm._v("- - - -  Office")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "47" } }, [_vm._v("- - - -  Gaming")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "48" } }, [
-          _vm._v("- - - -  Chromebook")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "49" } }, [
-          _vm._v("- - - -  Refurbished")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "50" } }, [
-          _vm._v("- - - -  Touchscreen")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "51" } }, [
-          _vm._v("- - - -  Ultrabooks")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "52" } }, [_vm._v("- - - -  Blouses")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "43" } }, [_vm._v("- -  Meito")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "53" } }, [
-          _vm._v("- - - -  Hard Drives")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "54" } }, [
-          _vm._v("- - - -  Graphic Cards")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "55" } }, [
-          _vm._v("- - - -  Processors (CPU)")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "56" } }, [_vm._v("- - - -  Memory")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "57" } }, [
-          _vm._v("- - - -  Motherboards")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "58" } }, [
-          _vm._v("- - - -  Fans & Cooling")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "59" } }, [
-          _vm._v("- - - -  CD/DVD Drives")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "44" } }, [_vm._v("- -  XailStation")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "60" } }, [
-          _vm._v("- - - -  Sound Cards")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "61" } }, [
-          _vm._v("- - - -  Cases & Towers")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "62" } }, [
-          _vm._v("- - - -  Casual Dresses")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "63" } }, [
-          _vm._v("- - - -  Evening Dresses")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "64" } }, [_vm._v("- - - -  T-shirts")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "65" } }, [_vm._v("- - - -  Tops")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "12" } }, [_vm._v("Smartphone")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "66" } }, [
-          _vm._v("- -  Camera Accessories")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "68" } }, [
-          _vm._v("- - - -  Octa Core")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "69" } }, [
-          _vm._v("- - - -  Quad Core")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "70" } }, [
-          _vm._v("- - - -  Dual Core")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "71" } }, [
-          _vm._v("- - - -  7.0 Screen")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "72" } }, [
-          _vm._v("- - - -  9.0 Screen")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "73" } }, [
-          _vm._v("- - - -  Bags & Cases")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "67" } }, [_vm._v("- -  Sanai")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "74" } }, [
-          _vm._v("- - - -  Batteries")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "75" } }, [
-          _vm._v("- - - -  Microphones")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "76" } }, [
-          _vm._v("- - - -  Stabilizers")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "77" } }, [
-          _vm._v("- - - -  Video Tapes")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "78" } }, [
-          _vm._v("- - - -  Memory Card Readers")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "79" } }, [_vm._v("- - - -  Tripods")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "13" } }, [_vm._v("Cameras")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "14" } }, [_vm._v("headphone")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "15" } }, [_vm._v("Smartwatch")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "16" } }, [_vm._v("Accessories")])
+    return _c("select", { staticClass: "nice-select select-search-category" }, [
+      _c("option", { attrs: { value: "0" } }, [_vm._v("All")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "10" } }, [_vm._v("Laptops")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "17" } }, [_vm._v("- -  Prime Video")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "20" } }, [_vm._v("- - - -  All Videos")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "21" } }, [_vm._v("- - - -  Blouses")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "22" } }, [
+        _vm._v("- - - -  Evening Dresses")
       ]),
       _vm._v(" "),
-      _c("input", {
-        attrs: { type: "text", placeholder: "Enter your search key ..." }
-      }),
+      _c("option", { attrs: { value: "23" } }, [
+        _vm._v("- - - -  Summer Dresses")
+      ]),
       _vm._v(" "),
-      _c("button", { staticClass: "li-btn", attrs: { type: "submit" } }, [
-        _c("i", { staticClass: "fa fa-search" })
-      ])
+      _c("option", { attrs: { value: "24" } }, [_vm._v("- - - -  T-shirts")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "25" } }, [
+        _vm._v("- - - -  Rent or Buy")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "26" } }, [
+        _vm._v("- - - -  Your Watchlist")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "27" } }, [
+        _vm._v("- - - -  Watch Anywhere")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "28" } }, [
+        _vm._v("- - - -  Getting Started")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "18" } }, [_vm._v("- - - -  Computers")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "29" } }, [
+        _vm._v("- - - -  More to Explore")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "30" } }, [_vm._v("- - - -  TV & Video")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "31" } }, [
+        _vm._v("- - - -  Audio & Theater")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "32" } }, [
+        _vm._v("- - - -  Camera, Photo ")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "33" } }, [
+        _vm._v("- - - -  Cell Phones")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "34" } }, [_vm._v("- - - -  Headphones")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "35" } }, [
+        _vm._v("- - - -  Video Games")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "36" } }, [
+        _vm._v("- - - -  Wireless Speakers")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "19" } }, [
+        _vm._v("- - - -  Electronics")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "37" } }, [
+        _vm._v("- - - -  Amazon Home")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "38" } }, [
+        _vm._v("- - - -  Kitchen & Dining")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "39" } }, [_vm._v("- - - -  Furniture")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "40" } }, [_vm._v("- - - -  Bed & Bath")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "41" } }, [_vm._v("- - - -  Appliances")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "11" } }, [_vm._v("TV & Audio")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "42" } }, [_vm._v("- -  Chamcham")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "45" } }, [_vm._v("- - - -  Office")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "47" } }, [_vm._v("- - - -  Gaming")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "48" } }, [_vm._v("- - - -  Chromebook")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "49" } }, [
+        _vm._v("- - - -  Refurbished")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "50" } }, [
+        _vm._v("- - - -  Touchscreen")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "51" } }, [_vm._v("- - - -  Ultrabooks")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "52" } }, [_vm._v("- - - -  Blouses")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "43" } }, [_vm._v("- -  Meito")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "53" } }, [
+        _vm._v("- - - -  Hard Drives")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "54" } }, [
+        _vm._v("- - - -  Graphic Cards")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "55" } }, [
+        _vm._v("- - - -  Processors (CPU)")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "56" } }, [_vm._v("- - - -  Memory")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "57" } }, [
+        _vm._v("- - - -  Motherboards")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "58" } }, [
+        _vm._v("- - - -  Fans & Cooling")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "59" } }, [
+        _vm._v("- - - -  CD/DVD Drives")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "44" } }, [_vm._v("- -  XailStation")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "60" } }, [
+        _vm._v("- - - -  Sound Cards")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "61" } }, [
+        _vm._v("- - - -  Cases & Towers")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "62" } }, [
+        _vm._v("- - - -  Casual Dresses")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "63" } }, [
+        _vm._v("- - - -  Evening Dresses")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "64" } }, [_vm._v("- - - -  T-shirts")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "65" } }, [_vm._v("- - - -  Tops")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "12" } }, [_vm._v("Smartphone")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "66" } }, [
+        _vm._v("- -  Camera Accessories")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "68" } }, [_vm._v("- - - -  Octa Core")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "69" } }, [_vm._v("- - - -  Quad Core")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "70" } }, [_vm._v("- - - -  Dual Core")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "71" } }, [_vm._v("- - - -  7.0 Screen")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "72" } }, [_vm._v("- - - -  9.0 Screen")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "73" } }, [
+        _vm._v("- - - -  Bags & Cases")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "67" } }, [_vm._v("- -  Sanai")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "74" } }, [_vm._v("- - - -  Batteries")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "75" } }, [
+        _vm._v("- - - -  Microphones")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "76" } }, [
+        _vm._v("- - - -  Stabilizers")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "77" } }, [
+        _vm._v("- - - -  Video Tapes")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "78" } }, [
+        _vm._v("- - - -  Memory Card Readers")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "79" } }, [_vm._v("- - - -  Tripods")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "13" } }, [_vm._v("Cameras")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "14" } }, [_vm._v("headphone")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "15" } }, [_vm._v("Smartwatch")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "16" } }, [_vm._v("Accessories")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", { staticClass: "li-btn", attrs: { type: "submit" } }, [
+      _c("i", { staticClass: "fa fa-search" })
     ])
   },
   function() {

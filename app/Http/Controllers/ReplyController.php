@@ -4,19 +4,31 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Reply;
-use App\Product;
+
 use App\Products_model;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\repliesResource;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Resources\ReplyRessource;
+
 
 class ReplyController extends Controller
 {
+
+    protected $user;
+
+    public function __construct()
+    {
+        $this->user = JWTAuth::parseToken()->authenticate();
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function index()
     {
         $reply = Reply::latest()->get() ;
@@ -39,11 +51,25 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Product $product,Request $request)
+    public function store(Products_model $products_model,Request $request)
     {
 
-        $question=  auth()->user()->comments()->create($request->all());
-        return response()->json(new ReplyResource($question), 200);
+
+
+        $product = new Reply();
+        $product->body = $request->body;
+        $product->product_id = $request->product_id;
+
+
+        if ($this->user->comments()->save($product))
+           return $product ;
+        else
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, product could not be added'
+            ], 500);
+
+
 
 
 
@@ -58,7 +84,7 @@ class ReplyController extends Controller
      */
     public function show($id)
     {
-        $reply = repliesResource::collection(Reply::where('product_id',$id)->get()) ;
+        $reply = ReplyRessource::collection(Reply::where('product_id',$id)->get()) ;
         return $reply ;
     }
 

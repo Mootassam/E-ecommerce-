@@ -12,6 +12,7 @@
 */
 /* FrontEnd Location */
 Route::get('/','IndexController@index');
+
 Route::get('/list-products','IndexController@shop');
 Route::get('/cat/{id}','IndexController@listByCat')->name('cats');
 Route::get('/product-detail/{id}','IndexController@detialpro');
@@ -26,9 +27,9 @@ Route::get('/cart/update-quantity/{id}/{quantity}','CartController@updateQuantit
 /// Apply Coupon Code
 Route::post('/apply-coupon','CouponController@applycoupon');
 /// Simple User Login /////
-Route::get('/login_page','UsersController@index');
-Route::post('/register_user','UsersController@register');
-Route::post('/user_login','UsersController@login');
+
+
+
 Route::get('/logout','UsersController@logout');
 
 ////// User Authentications ///////////

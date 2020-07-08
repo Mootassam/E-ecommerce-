@@ -23,6 +23,9 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+const jwtToken = `bearer ${localStorage.getItem('token')}`
+window.axios.defaults.headers.common['Authorization'] = jwtToken;
+
 try {
     window.$ = window.jQuery = require('jquery');
 

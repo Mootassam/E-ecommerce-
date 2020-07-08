@@ -33,8 +33,10 @@ Route::group([
 
 });
 
+
+
     // Admin routes  //
-    Route::post('/login','UsersController@login');
+
 
 Route::apiResource('/category','CategoryController');
 Route::apiResource('/coupon','CouponController');
@@ -47,7 +49,7 @@ Route::apiresource('/reply', 'ReplyController');
 
 Route::get('/homes','IndexController@homes');
 Route::get('/product-detail/{id}','IndexController@detialpro');
-
+Route::get('/product/search','IndexController@index');
 // Cart route //
 Route::post('/addToCart','CartController@addToCart')->name('addToCart');
 Route::get('/viewcart','CartController@index');
@@ -58,3 +60,7 @@ Route::post('/submit-checkout','CheckOutController@submitcheckout');
 Route::post('/submit-order','OrdersController@store');
 Route::get('/cod','OrdersController@cod');
 Route::get('/paypal','OrdersController@paypal');
+
+
+//Product Route//
+

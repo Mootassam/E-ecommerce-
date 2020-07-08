@@ -71,7 +71,7 @@
                             <!-- Begin Header Middle Right Area -->
                             <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
                                 <!-- Begin Header Middle Searchbox Area -->
-                                <form action="#" class="hm-searchbox">
+                                <form action="#" class="hm-searchbox" @submit.prevent="searchs()">
                                     <select class="nice-select select-search-category">
                                         <option value="0">All</option>
                                         <option value="10">Laptops</option>
@@ -144,8 +144,8 @@
                                         <option value="15">Smartwatch</option>
                                         <option value="16">Accessories</option>
                                     </select>
-                                    <input type="text" placeholder="Enter your search key ...">
-                                    <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                                    <input type="text"  v-model="quicksearch"  placeholder="Enter your search key ...">
+                                    <button class="li-btn" type="submit" ><i class="fa fa-search"></i></button>
                                 </form>
                                 <!-- Header Middle Searchbox Area End Here -->
                                 <!-- Begin Header Middle Right Area -->
@@ -276,6 +276,7 @@ export default {
             },
             wishes:[],
             heart:0,
+            quicksearch:'',
 
 
 
@@ -294,6 +295,15 @@ export default {
         this.UpdateCart();
       },
     methods:{
+        searchs(){
+            axios.get('/api/product/search',this.quicksearch)
+            .then(res => {
+
+            })
+            .catch(error => {
+
+            })
+         },
     viewcart(){
       if(localStorage.getItem('carts')){
         this.carts = JSON.parse(localStorage.getItem('carts'));

@@ -25,8 +25,9 @@
                                                     <a class="post-time" href="#"><i class="fa fa-calendar"></i> 25 nov 2018</a>
                                                 </div>
                                                 <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex.</p>
-                                                <!-- Begin Blog Blockquote Area -->
-                                                <div class="li-blog-blockquote">
+
+                                            <!-- Begin Blog Blockquote Area -->
+                                               <!--     <div class="li-blog-blockquote">
                                                     <blockquote>
                                                         <p><table class="table table-striped ">
 
@@ -59,7 +60,7 @@
                                                            </table></p>
                                                     </blockquote>
                                                 </div>
-                                                <!-- Blog Blockquote Area End Here -->
+                                                Blog Blockquote Area End Here -->
                                                 <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore rerum Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore rerum </p>
                                                 <div class="li-tag-line">
                                                     <h4>tag:</h4>
@@ -79,9 +80,9 @@
                                     </div>
                                     <!-- Begin Li's Blog Comment Section -->
                                     <div class="li-comment-section">
-                                        <h3>03 comment</h3>
+                                        <h3> {{this.data.length}} comment</h3>
                                         <ul>
-                                            <li  v-for="see in this.data.data" :key="see.id" >
+                                            <li  v-for="see in this.data" :key="see.id" >
                                                 <div class="author-avatar pt-15">
                                                     <img src="css/fronts/images/product-details/user.png" alt="User">
                                                 </div>
@@ -103,17 +104,14 @@
                                     <div class="li-blog-comment-wrapper">
                                         <h3>leave a reply</h3>
                                         <p>Your email address will not be published. Required fields are marked *</p>
-                                        <form @submit.prevent="comments">
+                                        <form @submit.prevent="comments()">
                                             <div class="comment-post-box" >
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <label>comment</label>
-                                                     <input type="hidden" v-model="form.user_id">
 
-                                                        <input type="hidden" v-model="form.product_id">
-                                                          <input type="hidden" v-model="form.user_id">
 
-                                                        <textarea  name="commnet"  v-model="form.body" placeholder="Write a comment"></textarea>
+                                                        <textarea  name="commnet"  v-model="body" placeholder="Write a comment"></textarea>
                                                     </div>
 
                                                     <div class="col-lg-12">
@@ -139,16 +137,16 @@
 
 <script>
 export default {
-    props:['data'],
+    props:['data','detaile' ,'id'],
     data() {
+   const productid = this.id;
         return {
-            content:this.data,
-            details:{},
-            form:{
-            body:'',
-            product_id: 2,
-            user_id:''
-            }
+
+                replys :[],
+                details:{},
+                body:'',
+
+
         }
     },
 
@@ -160,8 +158,11 @@ this.comments();
 
 
         comments(){
-        axios.post('api/reply', this.form).then(res => {
-        this.data.data.push(res.data);
+
+        axios.post('api/reply', {'body':this.body , 'product_id':this.id} )
+        .then(res => {
+            this.data.push(res.data);
+
         }).catch(error => {
 
         })

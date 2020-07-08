@@ -3,11 +3,11 @@
 namespace App;
 
 use App\Reply;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -19,6 +19,23 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password','admin','address','city','state','country','pincode','mobile'
     ];
+
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -34,7 +51,7 @@ class User extends Authenticatable
 
     public function comments()
     {
-        return $this->hasMany('App\Reply');
+        return $this->hasMany(Reply::class);
     }
 
 }

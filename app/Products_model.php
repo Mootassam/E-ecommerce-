@@ -19,9 +19,7 @@ class Products_model extends Model
         return $this->hasMany(ProductAtrr_model::class,'products_id','id');
     }
 
-
-
-    public function replies()
+    public function comments()
     {
         return $this->hasMany(Reply::class,'product_id','id');
     }
