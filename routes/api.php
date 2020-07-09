@@ -26,7 +26,7 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
-    Route::post('signup', 'AuthController@signup');
+    Route::post('register', 'AuthController@register');
 
 
 
@@ -36,16 +36,15 @@ Route::group([
 
 
     // Admin routes  //
-
-
 Route::apiResource('/category','CategoryController');
 Route::apiResource('/coupon','CouponController');
 Route::apiResource('/product','ProductsController');
 Route::get('parentcategory', 'CategoryController@parent');
-Route::get('order', 'ProductsController@order');
-Route::apiresource('/reply', 'ReplyController');
+
+
 
 // Route for User //
+Route::apiresource('/reply', 'ReplyController');
 
 Route::get('/homes','IndexController@homes');
 Route::get('/product-detail/{id}','IndexController@detialpro');
@@ -55,12 +54,11 @@ Route::post('/addToCart','CartController@addToCart')->name('addToCart');
 Route::get('/viewcart','CartController@index');
 Route::post('/apply-coupon','CouponController@applycoupon');
 
-
 Route::post('/submit-checkout','CheckOutController@submitcheckout');
-Route::post('/submit-order','OrdersController@store');
+Route::post('/sendorder','OrdersController@store');
+
 Route::get('/cod','OrdersController@cod');
 Route::get('/paypal','OrdersController@paypal');
 
 
-//Product Route//
 

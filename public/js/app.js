@@ -62619,8 +62619,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         quickComment: function quickComment(id) {
             var _this2 = this;
 
-            var token = localStorage.getItem('token');
-            axios.get('/api/reply/' + id + '/?token=' + token).then(function (res) {
+            axios.get('/api/reply/' + id).then(function (res) {
                 _this2.replyes = res.data;
                 _this2.id = id;
             });
@@ -62895,7 +62894,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         };
     },
-    created: function created() {
+    mounted: function mounted() {
         this.comments();
     },
 
@@ -64667,7 +64666,7 @@ var render = function() {
       _vm._v(" "),
       _vm.comment
         ? _c("comment", {
-            attrs: { id: _vm.id, detaile: _vm.details, data: _vm.replyes }
+            attrs: { id: _vm.id, details: _vm.details, data: _vm.replyes }
           })
         : _vm._e()
     ],
@@ -65252,7 +65251,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -65551,14 +65550,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['data'],
+    props: ['data', 'couponCode'],
     data: function data() {
+
         return {
             order: this.data,
             show: false,
             cart: {},
-            totale: 0,
-            errors: ''
+            AAtotale: 0,
+            errors: '',
+            Addorder: {
+
+                users_email: '',
+                name: '',
+                last_name: '',
+                country: '',
+                address: '',
+                city: '',
+                state: '',
+                pincode: '',
+                mobile: '',
+                coupon_code: this.couponCode,
+                coupon_amount: this.getAmount(this.data),
+                order_status: 'success',
+                grand_total: '',
+                order_notes: ''
+            }
 
         };
     },
@@ -65567,10 +65584,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        getAmount: function getAmount(amount) {
+
+            return amount * 100;
+        },
         viewCart: function viewCart() {
             if (localStorage.getItem('carts')) {
                 this.cart = JSON.parse(localStorage.getItem('carts'));
-                this.totale = this.cart.reduce(function (totale, item) {
+                this.AAtotale = this.cart.reduce(function (totale, item) {
+                    return totale + item.amount * item.price;
+                }, 0);
+                this.Addorder.grand_total = this.cart.reduce(function (totale, item) {
                     return totale + item.amount * item.price;
                 }, 0);
             }
@@ -65578,7 +65602,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         orderNow: function orderNow() {
             var _this = this;
 
-            axios.post('api/submit-order').then().catch(function (error) {
+            axios.post('/api/sendorder', this.Addorder, this.couponCode).then(function (res) {}).catch(function (error) {
                 if (error.response.status == 422) {
                     _this.errors = error.response.data.errors;
                 }
@@ -65620,7 +65644,66 @@ var render = function() {
                       _c("div", { staticClass: "country-select clearfix" }, [
                         _vm._m(0),
                         _vm._v(" "),
-                        _vm._m(1),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.Addorder.country,
+                                expression: "Addorder.country"
+                              }
+                            ],
+                            staticClass: "nice-select wide",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.Addorder,
+                                  "country",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { "data-display": "Bangladesh" } },
+                              [_vm._v("Bangladesh")]
+                            ),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "uk" } }, [
+                              _vm._v("London")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "rou" } }, [
+                              _vm._v("Romania")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "fr" } }, [
+                              _vm._v("French")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "de" } }, [
+                              _vm._v("Germany")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "aus" } }, [
+                              _vm._v("Australia")
+                            ])
+                          ]
+                        ),
                         _vm._v(" "),
                         _vm.errors.country
                           ? _c("span", { staticClass: "alert-danger" }, [
@@ -65632,10 +65715,31 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-6" }, [
                       _c("div", { staticClass: "checkout-form-list" }, [
-                        _vm._m(2),
+                        _vm._m(1),
                         _vm._v(" "),
                         _c("input", {
-                          attrs: { placeholder: "", type: "text" }
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.Addorder.name,
+                              expression: "Addorder.name"
+                            }
+                          ],
+                          attrs: { placeholder: "", type: "text" },
+                          domProps: { value: _vm.Addorder.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.Addorder,
+                                "name",
+                                $event.target.value
+                              )
+                            }
+                          }
                         }),
                         _vm._v(" "),
                         _vm.errors.name
@@ -65648,10 +65752,31 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-6" }, [
                       _c("div", { staticClass: "checkout-form-list" }, [
-                        _vm._m(3),
+                        _vm._m(2),
                         _vm._v(" "),
                         _c("input", {
-                          attrs: { placeholder: "", type: "text" }
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.Addorder.last_name,
+                              expression: "Addorder.last_name"
+                            }
+                          ],
+                          attrs: { placeholder: "", type: "text" },
+                          domProps: { value: _vm.Addorder.last_name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.Addorder,
+                                "last_name",
+                                $event.target.value
+                              )
+                            }
+                          }
                         }),
                         _vm._v(" "),
                         _vm.errors.last_name
@@ -65664,10 +65789,34 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-12" }, [
                       _c("div", { staticClass: "checkout-form-list" }, [
-                        _vm._m(4),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c("input", {
-                          attrs: { placeholder: "Street address", type: "text" }
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.Addorder.address,
+                              expression: "Addorder.address"
+                            }
+                          ],
+                          attrs: {
+                            placeholder: "Street address",
+                            type: "text"
+                          },
+                          domProps: { value: _vm.Addorder.address },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.Addorder,
+                                "address",
+                                $event.target.value
+                              )
+                            }
+                          }
                         }),
                         _vm._v(" "),
                         _vm.errors.address
@@ -65678,13 +65827,36 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(5),
+                    _vm._m(4),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-12" }, [
                       _c("div", { staticClass: "checkout-form-list" }, [
-                        _vm._m(6),
+                        _vm._m(5),
                         _vm._v(" "),
-                        _c("input", { attrs: { type: "text" } }),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.Addorder.city,
+                              expression: "Addorder.city"
+                            }
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.Addorder.city },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.Addorder,
+                                "city",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
                         _vm._v(" "),
                         _vm.errors.city
                           ? _c("span", { staticClass: "alert-danger" }, [
@@ -65696,10 +65868,31 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-6" }, [
                       _c("div", { staticClass: "checkout-form-list" }, [
-                        _vm._m(7),
+                        _vm._m(6),
                         _vm._v(" "),
                         _c("input", {
-                          attrs: { placeholder: "", type: "text" }
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.Addorder.state,
+                              expression: "Addorder.state"
+                            }
+                          ],
+                          attrs: { placeholder: "", type: "text" },
+                          domProps: { value: _vm.Addorder.state },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.Addorder,
+                                "state",
+                                $event.target.value
+                              )
+                            }
+                          }
                         }),
                         _vm._v(" "),
                         _vm.errors.state
@@ -65712,10 +65905,31 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-6" }, [
                       _c("div", { staticClass: "checkout-form-list" }, [
-                        _vm._m(8),
+                        _vm._m(7),
                         _vm._v(" "),
                         _c("input", {
-                          attrs: { placeholder: "", type: "text" }
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.Addorder.pincode,
+                              expression: "Addorder.pincode"
+                            }
+                          ],
+                          attrs: { placeholder: "", type: "text" },
+                          domProps: { value: _vm.Addorder.pincode },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.Addorder,
+                                "pincode",
+                                $event.target.value
+                              )
+                            }
+                          }
                         }),
                         _vm._v(" "),
                         _vm.errors.Postcode
@@ -65728,10 +65942,31 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-6" }, [
                       _c("div", { staticClass: "checkout-form-list" }, [
-                        _vm._m(9),
+                        _vm._m(8),
                         _vm._v(" "),
                         _c("input", {
-                          attrs: { placeholder: "", type: "email" }
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.Addorder.users_email,
+                              expression: "Addorder.users_email"
+                            }
+                          ],
+                          attrs: { placeholder: "", type: "email" },
+                          domProps: { value: _vm.Addorder.users_email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.Addorder,
+                                "users_email",
+                                $event.target.value
+                              )
+                            }
+                          }
                         }),
                         _vm._v(" "),
                         _vm.errors.users_email
@@ -65744,9 +65979,32 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-6" }, [
                       _c("div", { staticClass: "checkout-form-list" }, [
-                        _vm._m(10),
+                        _vm._m(9),
                         _vm._v(" "),
-                        _c("input", { attrs: { type: "text" } }),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.Addorder.mobile,
+                              expression: "Addorder.mobile"
+                            }
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.Addorder.mobile },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.Addorder,
+                                "mobile",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
                         _vm._v(" "),
                         _vm.errors.mobile
                           ? _c("span", { staticClass: "alert-danger" }, [
@@ -65775,6 +66033,8 @@ var render = function() {
                     _vm._v(" "),
                     _vm.show
                       ? _c("div", { staticClass: "row" }, [
+                          _vm._m(10),
+                          _vm._v(" "),
                           _vm._m(11),
                           _vm._v(" "),
                           _vm._m(12),
@@ -65793,13 +66053,46 @@ var render = function() {
                           _vm._v(" "),
                           _vm._m(19),
                           _vm._v(" "),
-                          _vm._m(20),
-                          _vm._v(" "),
-                          _vm._m(21)
+                          _vm._m(20)
                         ])
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm._m(22)
+                    _c("div", { staticClass: "order-notes" }, [
+                      _c("div", { staticClass: "checkout-form-list" }, [
+                        _c("label", [_vm._v("Order Notes")]),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.Addorder.order_notes,
+                              expression: "Addorder.order_notes"
+                            }
+                          ],
+                          attrs: {
+                            id: "checkout-mess",
+                            cols: "30",
+                            rows: "10",
+                            placeholder:
+                              "Notes about your order, e.g. special notes for delivery."
+                          },
+                          domProps: { value: _vm.Addorder.order_notes },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.Addorder,
+                                "order_notes",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
                   ])
                 ])
               ]),
@@ -65813,7 +66106,7 @@ var render = function() {
                     { staticClass: "your-order-table table-responsive" },
                     [
                       _c("table", { staticClass: "table" }, [
-                        _vm._m(23),
+                        _vm._m(21),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -65853,7 +66146,7 @@ var render = function() {
                             _c("td", [
                               _c("strong", [
                                 _c("span", { staticClass: "amount" }, [
-                                  _vm._v(_vm._s(_vm.totale) + " TND ")
+                                  _vm._v(_vm._s(_vm.AAtotale) + " TND ")
                                 ])
                               ])
                             ])
@@ -65877,7 +66170,7 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(24)
+                  _vm._m(22)
                 ])
               ])
             ])
@@ -65895,26 +66188,6 @@ var staticRenderFns = [
     return _c("label", [
       _vm._v("Country "),
       _c("span", { staticClass: "required" }, [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("select", { staticClass: "nice-select wide" }, [
-      _c("option", { attrs: { "data-display": "Bangladesh" } }, [
-        _vm._v("Bangladesh")
-      ]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "uk" } }, [_vm._v("London")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "rou" } }, [_vm._v("Romania")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "fr" } }, [_vm._v("French")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "de" } }, [_vm._v("Germany")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "aus" } }, [_vm._v("Australia")])
     ])
   },
   function() {
@@ -66177,26 +66450,6 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("input", { attrs: { type: "text" } })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "order-notes" }, [
-      _c("div", { staticClass: "checkout-form-list" }, [
-        _c("label", [_vm._v("Order Notes")]),
-        _vm._v(" "),
-        _c("textarea", {
-          attrs: {
-            id: "checkout-mess",
-            cols: "30",
-            rows: "10",
-            placeholder:
-              "Notes about your order, e.g. special notes for delivery."
-          }
-        })
       ])
     ])
   },
@@ -66658,7 +66911,11 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.check ? _c("chekout", { attrs: { data: _vm.result } }) : _vm._e()
+      _vm.check
+        ? _c("chekout", {
+            attrs: { data: _vm.result, couponCode: _vm.FormCoupon.coupon_code }
+          })
+        : _vm._e()
     ],
     1
   )
@@ -66798,7 +67055,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -66903,7 +67160,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             register: {
                 name: '',
                 email: '',
-
                 password: '',
                 password_confirmation: ''
             }
@@ -66918,10 +67174,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Register: function Register() {
             var _this = this;
 
-            axios.post('/api/auth/signup', this.register).then(function (res) {
-                window.location = '/homes';
-
-                localStorage.getItem('user', 'mootassam');
+            axios.post('/api/auth/register', this.register).then(function (res) {
+                window.location = '/';
             }).catch(function (error) {
                 if (error.response.status == 422) {
                     _this.errors = error.response.data.errors;

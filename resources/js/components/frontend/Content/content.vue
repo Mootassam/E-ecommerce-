@@ -178,7 +178,7 @@
                 </div>
             </div>
 
-<comment v-if="comment" :id=id :detaile=details :data=replyes></comment>
+<comment v-if="comment" :id=id :details=details :data=replyes></comment>
  </div>
 </template>
 
@@ -230,8 +230,8 @@ this.get();
       EventBus.$emit('start',prd) ;
       },
         quickComment(id){
-            const token = localStorage.getItem('token')
-            axios.get(`/api/reply/${id}/?token=`+token).then(
+
+            axios.get(`/api/reply/${id}`).then(
                 res => {
                     this.replyes = res.data;
                     this.id = id ;

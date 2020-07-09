@@ -10,6 +10,12 @@ class AuthController extends Controller
 {
     public function register(RegisterAuthRequest $request)
     {
+        $request->validate([
+            'name' => 'required|unique:users',
+            'email' => 'required|unique:users|max:255',
+            'password' => 'required',
+
+        ]);
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -28,8 +34,19 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+
+        ]);
+
         $input = $request->only('email', 'password');
         $token = null;
+
+        if($token = JWTAuth::attempt($input) ){
+
+            return $this->respondWithToken($token);
+        }
 
         if (!$token = JWTAuth::attempt($input)) {
             return response()->json([
@@ -38,7 +55,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-      return $this->respondWithToken($token);
+
     }
 
     public function logout(Request $request)

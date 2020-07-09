@@ -78,6 +78,10 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function (){
 ///
 });
 
-Auth::routes();
+Route::post('login', 'AuthController@login');
+Route::post('logout', 'AuthController@logout');
+Route::post('refresh', 'AuthController@refresh');
+Route::post('me', 'AuthController@me');
+Route::post('signup', 'AuthController@signup');
 
 Route::get('/home', 'HomeController@index')->name('home');

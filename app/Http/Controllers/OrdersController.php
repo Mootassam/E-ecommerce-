@@ -6,12 +6,20 @@ use App\Cart_model;
 use App\Orders_model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Requests\OrderRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class OrdersController extends Controller
 {
+    protected $user;
+
+    public function __construct()
+    {
+        $this->user = JWTAuth::parseToken()->authenticate();
+    }
+
     public function index(){
         $session_id=Session::get('session_id');
         $cart_datas=Cart_model::where('session_id',$session_id)->get();
@@ -23,8 +31,9 @@ class OrdersController extends Controller
         return view('checkout.review_order',compact('shipping_address','cart_datas','total_price'));
     }
     public function order(Request $request){
+
         $input_data=$request->all();
-        $payment_method=$input_data['payment_method'];
+
         Orders_model::create($input_data);
         if($payment_method=="COD"){
             return redirect('/cod');
@@ -41,8 +50,10 @@ class OrdersController extends Controller
         return view('payment.paypal',compact('who_buying'));
     }
 
-    public function store(OrderRequest $request){
-            return Orders_model::create($request->all());
+    public function store(Request $request){
+
+           $order =  Orders_model::create($request->all());
+            return $order ;
 
     }
 }

@@ -89,7 +89,7 @@
                     </div>
                 </div>
             </div>
-<chekout :data=result v-if="check"></chekout>
+<chekout :data=result  :couponCode=FormCoupon.coupon_code v-if="check"></chekout>
   </div>
 </template>
 

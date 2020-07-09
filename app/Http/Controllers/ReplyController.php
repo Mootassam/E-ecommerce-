@@ -84,7 +84,7 @@ class ReplyController extends Controller
      */
     public function show($id)
     {
-        $reply = ReplyRessource::collection(Reply::where('product_id',$id)->get()) ;
+        $reply = ReplyRessource::collection(Reply::where('product_id',$id)->paginate(10)) ;
         return $reply ;
     }
 

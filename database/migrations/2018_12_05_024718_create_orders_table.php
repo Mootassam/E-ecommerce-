@@ -25,13 +25,11 @@ class CreateOrdersTable extends Migration
             $table->string('state',100);
             $table->string('pincode',100);
             $table->string('mobile',100);
-            $table->float('shipping_charges');
             $table->string('coupon_code',100);
             $table->string('coupon_amount',100);
             $table->string('order_status',100);
-            $table->string('payment_method',100);
             $table->string('grand_total',100);
-            $table->text('Order Notes');
+            $table->text('order_notes');
             $table->timestamps();
         });
     }

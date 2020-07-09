@@ -18,7 +18,7 @@
                                         <div class="col-md-12">
                                             <div class="country-select clearfix">
                                                 <label>Country <span class="required">*</span></label>
-                                                <select class="nice-select wide">
+                                                <select class="nice-select wide" v-model="Addorder.country">
                                                   <option data-display="Bangladesh">Bangladesh</option>
                                                   <option value="uk">London</option>
                                                   <option value="rou">Romania</option>
@@ -33,14 +33,14 @@
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>First Name <span class="required">*</span></label>
-                                                <input placeholder="" type="text">
-                                                <span class="alert-danger" v-if="errors.name">{{errors.name[0]}}</span>
+                                                <input placeholder="" type="text" v-model="Addorder.name" >
+                                                <span class="alert-danger"  v-if="errors.name">{{errors.name[0]}}</span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Last Name <span class="required">*</span></label>
-                                                <input placeholder="" type="text">
+                                                <input placeholder="" type="text" v-model="Addorder.last_name">
                               <span class="alert-danger" v-if="errors.last_name">{{errors.last_name[0]}}</span>
 
                                             </div>
@@ -49,7 +49,7 @@
                                         <div class="col-md-12">
                                             <div class="checkout-form-list">
                                                 <label>Address <span class="required">*</span></label>
-                                                <input placeholder="Street address" type="text">
+                                                <input placeholder="Street address" v-model="Addorder.address" type="text">
                                     <span class="alert-danger" v-if="errors.address">{{errors.address[0]}}</span>
 
                                             </div>
@@ -62,15 +62,15 @@
                                         <div class="col-md-12">
                                             <div class="checkout-form-list">
                                                 <label>Town / City <span class="required">*</span></label>
-                                                <input type="text">
+                                                <input type="text" v-model="Addorder.city">
            <span class="alert-danger" v-if="errors.city">{{errors.city[0]}}</span>
 
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="checkout-form-list">
+                                            <div class="checkout-form-list" >
                                                 <label>State / County <span class="required">*</span></label>
-                                                <input placeholder="" type="text">
+                                                <input placeholder="" type="text" v-model="Addorder.state">
                    <span class="alert-danger" v-if="errors.state">{{errors.state[0]}}</span>
 
                                             </div>
@@ -78,7 +78,7 @@
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Postcode / Zip <span class="required">*</span></label>
-                                                <input placeholder="" type="text">
+                                                <input placeholder="" type="text" v-model="Addorder.pincode">
                         <span class="alert-danger" v-if="errors.Postcode">{{errors.Postcode[0]}}</span>
 
                                             </div>
@@ -86,7 +86,7 @@
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Email Address <span class="required">*</span></label>
-                                                <input placeholder="" type="email">
+                                                <input placeholder="" type="email" v-model="Addorder.users_email">
                    <span class="alert-danger" v-if="errors.users_email">{{errors.users_email[0]}}</span>
 
                                             </div>
@@ -94,7 +94,7 @@
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Phone  <span class="required">*</span></label>
-                                                <input type="text">
+                                                <input type="text" v-model="Addorder.mobile">
                     <span class="alert-danger" v-if="errors.mobile">{{errors.mobile[0]}}</span>
 
                                             </div>
@@ -185,7 +185,7 @@
                                         <div class="order-notes">
                                             <div class="checkout-form-list">
                                                 <label>Order Notes</label>
-                                                <textarea id="checkout-mess" cols="30" rows="10" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                                <textarea id="checkout-mess" v-model="Addorder.order_notes" cols="30" rows="10" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -212,7 +212,7 @@
                                         <tfoot>
                                             <tr class="cart-subtotal">
                                                 <th>Cart Subtotal</th>
-                                                <td ><strong><span class="amount">{{totale}} TND </span></strong></td>
+                                                <td ><strong><span class="amount">{{AAtotale}} TND </span></strong></td>
                                             </tr>
                                             <tr v-if="order >0 " class="order-total">
                                                 <th>Order Total</th>
@@ -286,14 +286,32 @@
 
 <script>
 export default {
-    props:['data'],
+    props:['data','couponCode'],
     data() {
+
         return {
             order:this.data,
             show :false,
             cart:{},
-            totale:0,
-            errors:''
+            AAtotale:0,
+            errors:'',
+            Addorder: {
+
+                    users_email : '',
+                    name : '',
+                    last_name : '',
+                    country : '',
+                    address : '',
+                    city : '',
+                    state : '',
+                    pincode : '',
+                    mobile : '',
+                    coupon_code : this.couponCode,
+                    coupon_amount : this.getAmount(this.data),
+                    order_status : 'success',
+                    grand_total : '',
+                    order_notes : '',
+            }
 
 
         }
@@ -302,17 +320,28 @@ export default {
         this.viewCart();
     },
    methods:{
+getAmount(amount){
+
+ return (amount * 100) ;
+
+},
        viewCart(){
            if(localStorage.getItem('carts')){
                this.cart = JSON.parse( localStorage.getItem('carts'));
-                this.totale= this.cart.reduce((totale,item) => {
+                this.AAtotale= this.cart.reduce((totale,item) => {
+                    return totale + item.amount * item.price ;
+                },0)
+                this.Addorder.grand_total= this.cart.reduce((totale,item) => {
                     return totale + item.amount * item.price ;
                 },0)
            }
        },
        orderNow(){
-           axios.post('api/submit-order')
-           .then()
+
+           axios.post('/api/sendorder',this.Addorder , this.couponCode)
+           .then(res => {
+
+           })
            .catch( error => {
                if(error.response.status == 422 ) {
                    this.errors = error.response.data.errors ;

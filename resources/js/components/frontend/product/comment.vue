@@ -150,7 +150,7 @@ export default {
         }
     },
 
-created(){
+mounted(){
 this.comments();
 
 },
