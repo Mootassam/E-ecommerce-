@@ -26,9 +26,14 @@ Vue.use(VueToast);
 import Cart from './components/Helpers/Cart'
 window.Cart = Cart
 
+
 import User from '../js/components/Helpers/User'
 window.User = User
 console.log(User.loggedIn())
+import { VueSpinners } from '@saeris/vue-spinners'
+Vue.use(VueSpinners)
+import vmodal from 'vue-js-modal'
+Vue.use(vmodal)
     /**
      * Next, we will create a fresh Vue application instance and attach it to
      * the page. Then, you may begin adding components to this application

@@ -21,8 +21,10 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "@saeris/vue-spinners": "^1.0.8",
         "bootstrap-sass": "^3.4.1",
         "laravel-elixir": "^3.0.0",
+        "vue-js-modal": "^2.0.0-rc.5",
         "vue-loading-overlay": "^3.3.2",
         "vue-owl-carousel": "^2.0.3",
         "vue-preloaders": "^1.0.13",

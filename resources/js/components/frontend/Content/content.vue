@@ -59,6 +59,7 @@
                                 </div>
                                 <!-- product-select-box end -->
                             </div>
+
                             <!-- shop-top-bar end -->
                             <!-- shop-products-wrapper start -->
                             <div class="shop-products-wrapper">
@@ -155,11 +156,9 @@
                                                     <div class="col-lg-4">
                                                         <div class="shop-add-action mb-xs-30">
                                                             <ul class="add-actions-link">
-                                                                <li class="add-cart"> <a v-if="adds" href="#" @click.once="addtocart(prd)">Ajouter</a>
-                                                                <a v-if="disable" href="#" @click="removeCart(index)"><i class="fa fa-times"> </i></a>
+                                                                <li class="add-cart"> <a  href="#" @click.once="addtocart(prd)">Ajouter</a>
                                                                 </li>
                                                                 <li class="wishlist"><a href="#" @click.once="wishlist(prd)"><i class="fa fa-heart-o"></i> Ajouter à la liste de souhaits </a></li>
-                                                                <li class="wishlist"><a href="#" @click="Addtocompare(prd.id)"><i class="fa fa-exchange"></i>Ajouter pour Comparer </a></li>
                                                                 <li><a class="quick-view"  @click="quickComment(prd.id) ; detailProduct(prd.id)"  href="#"><i class="fa fa-eye"></i>Aperçu rapide</a></li>
                                                             </ul>
                                                         </div>
@@ -185,12 +184,17 @@
 </template>
 
 <script>
+import { BarLoader } from '@saeris/vue-spinners'
+
 import comment from '../product/comment'
 import pagination from "../product/pagination";
 export default {
-    components:{pagination,comment},
+    components:{pagination,comment,BarLoader},
     data() {
+
         return {
+
+            loading:true ,
             adds:true ,
             disable:false,
             id:'',
@@ -232,8 +236,8 @@ this.get();
         wishlist(prd){
             EventBus.$emit('wishes',prd);
         },
-        addtocart(prd){
-      EventBus.$emit('start',prd) ;
+    addtocart(prd){
+      EventBus.$emit('start',prd);
       this.adds=false;
       this.disable=true ;
       },

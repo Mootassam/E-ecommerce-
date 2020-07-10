@@ -270,7 +270,10 @@
                                         </div>
                                         <div class="order-button-payment">
                                             <input value="Place order" type="submit">
+
+                                            <div class="spinner-border-sm"></div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -280,6 +283,10 @@
                 </div>
             </div>
                </form>
+
+               <modal name="hello-world">
+  hello, world!
+</modal>
             </div>
 
 </template>
@@ -290,6 +297,7 @@ export default {
     data() {
 
         return {
+
             order:this.data,
             show :false,
             cart:{},
@@ -320,6 +328,9 @@ export default {
         this.viewCart();
     },
    methods:{
+        show () {
+    this.$modal.show('hello-world');
+  },
 getAmount(amount){
 
  return (amount * 100) ;
@@ -340,7 +351,9 @@ getAmount(amount){
 
            axios.post('/api/sendorder',this.Addorder , this.couponCode)
            .then(res => {
-
+               this.$router.push('/Facture');
+               this.detail
+               window.print();
            })
            .catch( error => {
                if(error.response.status == 422 ) {

@@ -20,8 +20,6 @@ class ReplyController extends Controller
 
     public function __construct()
     {
-        $this->user = JWTAuth::parseToken()->authenticate();
-
         $this->middleware('JWT',['except' => ['show','index']]) ;
     }
     /**
@@ -62,9 +60,9 @@ class ReplyController extends Controller
         $product = new Reply();
         $product->body = $request->body;
         $product->product_id = $request->product_id;
+      $save=   $product->save();
 
-
-        if ($this->user->comments()->save($product))
+        if ($save)
            return $product ;
         else
             return response()->json([

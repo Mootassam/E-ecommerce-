@@ -49,10 +49,13 @@ class IndexController extends Controller
         $result_select=ProductAtrr_model::where(['products_id'=>$attr[0],'size'=>$attr[1]])->first();
         echo $result_select->price."#".$result_select->stock;
     }
-public function QuickSearch(Request $request){
 
-    $products=Products_model::all();
 
-    return $products;
-}
+        public function Look(Request $request){
+            $p_search = $request->get('quicksearch');
+                return Products_model::where('id', 'like', '%'.$p_search.'%')->get();
+
+
+        }
+
 }

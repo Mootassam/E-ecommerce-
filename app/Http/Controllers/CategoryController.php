@@ -19,6 +19,12 @@ class CategoryController extends Controller
         $categories=Category_model::all();
         return view('backEnd.category.index',compact('menu_active','categories'));
     }
+    public function lister()
+    {
+
+        $categories=Category_model::all();
+        return $categories;
+    }
 
     /**
      * Show the form for creating a new resource.

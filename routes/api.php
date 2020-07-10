@@ -59,7 +59,10 @@ Route::post('/sendorder','OrdersController@store');
 
 Route::get('/cod','OrdersController@cod');
 Route::get('/paypal','OrdersController@paypal');
-
-
-//
 Route::get('send-mail','MailSend@mailsend');
+
+
+Route::get('/listerCategry','CategoryController@lister');
+Route::get('/product/Search','IndexController@Look');
+
+

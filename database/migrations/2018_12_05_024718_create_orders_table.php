@@ -14,6 +14,7 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
+
             $table->increments('id');
             $table->integer('users_id');
             $table->string('users_email',100);
@@ -31,6 +32,7 @@ class CreateOrdersTable extends Migration
             $table->string('grand_total',100);
             $table->text('order_notes');
             $table->timestamps();
+
         });
     }
 

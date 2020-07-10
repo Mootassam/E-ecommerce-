@@ -51,8 +51,28 @@ class OrdersController extends Controller
         return view('payment.paypal',compact('who_buying'));
     }
 
+
+
+
+
+
+
+
     public function store(Request $request){
 
+                $request->validate([
+                    'users_email' => 'required',
+                    'name' => 'required',
+                    'last_name' => 'required',
+                    'country' => 'required',
+                    'address' => 'required',
+                    'city' => 'required',
+                    'state' => 'required',
+                    'pincode' => 'required',
+                    'mobile' => 'required',
+                    'order_notes' => 'required',
+
+                ]);
            $order =  Orders_model::create($request->all());
             return $order ;
 

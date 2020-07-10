@@ -69,6 +69,7 @@
                                         <div class="col-12">
                                             <button class="register-button mt-0" type="submit">Register</button>
                                         </div>
+                                        <div class="alert-success">{{should}}</div>
                                     </div>
                                 </div>
                             </form>
@@ -85,6 +86,7 @@ export default {
             errors:'',
                 errrors:'',
                 errlogin:'',
+                should:'',
             form:{
                 email:'',
                 password:'',
@@ -106,7 +108,9 @@ export default {
 
         axios.post('/api/auth/register', this.register).then(res => {
             User.responseAfterLogin(res);
-                  window.location = '/'
+            this.should= "Thanks for register now you can loggedIn";
+            return false ;
+
         }).catch(error => {
             if (error.response.status == 422) {
                 this.errors = error.response.data.errors
