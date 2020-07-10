@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <h5 class="text-muted">Sales</h5>
                     <div class="metric-value d-inline-block">
-                        <h1 class="mb-1">$12099</h1>
+                        <h1 class="mb-1">{{$tat}} TND </h1>
                     </div>
                     <div class="metric-label d-inline-block float-right text-success font-weight-bold">
                         <span class="icon-circle-small icon-box-xs text-success bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1">5.86%</span>
@@ -48,9 +48,9 @@
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
             <div class="card border-3 border-top border-top-primary">
                 <div class="card-body">
-                    <h5 class="text-muted">Visitor</h5>
+                    <h5 class="text-muted">Revenue Par User</h5>
                     <div class="metric-value d-inline-block">
-                        <h1 class="mb-1">13000</h1>
+                        <h1 class="mb-1">{{$revenue}}</h1>
                     </div>
                     <div class="metric-label d-inline-block float-right text-success font-weight-bold">
                         <span class="icon-circle-small icon-box-xs text-success bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1">5%</span>
@@ -90,7 +90,7 @@
 
         <!-- recent orders  -->
         <!-- ============================================================== -->
-        <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
+        <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
             <div class="card">
                 <h5 class="card-header">Recent Orders</h5>
                 <div class="card-body p-0">
@@ -102,8 +102,14 @@
                                     <th class="border-0">Phone</th>
                                     <th class="border-0">Country</th>
                                     <th class="border-0">Adresse</th>
+                                    <th class="border-0">city</th>
+
+
+
                                     <th class="border-0">Poste Code Id</th>
                                     <th class="border-0">Created_at</th>
+                                    <th class="border-0">Coupon_Code</th>
+
                                     <th class="border-0">Totale</th>
                                     <th class="border-0">Status</th>
 
@@ -112,14 +118,14 @@
                             <tbody>
                                 @foreach ($order as $item)
                                 <tr>
-
-
                                     <td>{{$item->users_email}}</td>
                                     <td>{{$item->mobile}}</td>
                                     <td>{{$item->country}} </td>
                                     <td>{{$item->address}}</td>
+                                    <td>{{$item->city}}</td>
                                     <td>{{$item->pincode}}</td>
                                     <td>{{$item->created_at}}</td>
+                                    <td>{{$item->coupon_code}} TND </td>
                                     <td>{{$item->grand_total}} TND </td>
                                     <td><span class="badge-dot badge-success mr-1"></span>{{$item->order_status}} </td>
 

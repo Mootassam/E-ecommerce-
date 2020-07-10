@@ -22,10 +22,22 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $sales= Orders_model::latest()->get();
+        $tat=0;
+        foreach($sales as $sal)
+        {
+            $tat += $sal->grand_total;
+        }
+
+
+
+
         $order = Orders_model::latest()->get();
         $totC = Orders_model::latest()->count();
         $user = User::latest()->count();
-       return view('backend.index',compact('order','totC','user')) ;
+        $revenue = $tat / $user ;
+       return view('backend.index',compact('order','totC','user','tat','revenue')) ;
+
     }
 
     public function RecentOrder(){
