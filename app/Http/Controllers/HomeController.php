@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Orders_model;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -20,7 +22,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-       return view('backend.index') ;
+        $order = Orders_model::latest()->get();
+        $totC = Orders_model::latest()->count();
+        $user = User::latest()->count();
+       return view('backend.index',compact('order','totC','user')) ;
+    }
+
+    public function RecentOrder(){
+
     }
 
     public function countUser(){

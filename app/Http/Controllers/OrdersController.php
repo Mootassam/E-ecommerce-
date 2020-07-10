@@ -58,13 +58,5 @@ class OrdersController extends Controller
 
     }
 
-    public function start(Request $request){
-        Mail::to('lycy@gmail.com')->send(new OrderStarted);
-    }
-    public function ship(Request $request){
-        return 'ship' ;
-    }
-    public function complete(Request $request){
-        return 'complete' ;
-    }
+
 }

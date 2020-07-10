@@ -105,7 +105,8 @@ export default {
         Register(){
 
         axios.post('/api/auth/register', this.register).then(res => {
-
+            User.responseAfterLogin(res);
+                  window.location = '/'
         }).catch(error => {
             if (error.response.status == 422) {
                 this.errors = error.response.data.errors

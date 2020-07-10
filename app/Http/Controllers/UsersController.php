@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        JWTAuth::parseToken()->authenticate();
+
+        $this->middleware('JWT',['except' => ['show','index']]) ;
+    }
+
     public function index(){
         return view('users.login_register');
     }
@@ -38,6 +45,7 @@ class UsersController extends Controller
         }
     }
     public function logout(){
+
         Auth::logout();
         Session::forget('frontSession');
         return redirect('/');

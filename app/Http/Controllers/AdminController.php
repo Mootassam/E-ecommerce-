@@ -4,18 +4,26 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    protected $user ;
+    public function __construct()
+    {
+        $this->user = JWTAuth::parseToken()->authenticate();
+
+        $this->middleware('JWT',['except' => ['show','index']]) ;
+    }
     public function index(){
         $menu_active=1;
         return view('backEnd.index',compact('menu_active'));
     }
     public function settings(){
-        $menu_active=0;
-        return view('backEnd.setting',compact('menu_active'));
+        dd(Auth::id()) ;
+
     }
     public function chkPassword(Request $request){
         $data=$request->all();
