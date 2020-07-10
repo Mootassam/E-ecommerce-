@@ -7,6 +7,7 @@ use App\Reply;
 
 use App\Products_model;
 
+use App\Http\Middleware\JWT;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Resources\ReplyRessource;
@@ -20,6 +21,8 @@ class ReplyController extends Controller
     public function __construct()
     {
         $this->user = JWTAuth::parseToken()->authenticate();
+
+        $this->middleware('JWT',['except' => ['show','index']]) ;
     }
     /**
      * Display a listing of the resource.

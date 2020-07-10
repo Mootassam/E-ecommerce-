@@ -5,6 +5,7 @@ class User {
     login(data) {
         axios.post('/api/auth/login', data)
             .then(res => {
+
                 this.responseAfterLogin(res)
             })
     }
@@ -17,7 +18,7 @@ class User {
         }
     }
     hasToken() {
-        const storedToken = AppStorage.getToken();
+        const storedToken = localStorage.getItem('token');
         if (storedToken) {
             return Token.isToken(storedToken) ? true : false
         }
@@ -25,6 +26,9 @@ class User {
     }
     loggedIn() {
         return this.hasToken()
+    }
+    loggedOut() {
+        return AppStorage.clear();
     }
 
 }

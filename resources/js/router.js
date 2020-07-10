@@ -34,7 +34,7 @@ const router = new VueRouter({
         { path: '/compare', component: compare },
         { path: '/', component: contents },
 
-        { path: '/logIn', component: login },
+        { path: '/logIn', component: login, name: 'logged' },
         { path: '/shopping-cart', component: viewCart },
         { path: '/wishlist', component: wishlist }
 

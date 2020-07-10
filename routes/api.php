@@ -61,4 +61,5 @@ Route::get('/cod','OrdersController@cod');
 Route::get('/paypal','OrdersController@paypal');
 
 
-
+//
+Route::get('send-mail','MailSend@mailsend');

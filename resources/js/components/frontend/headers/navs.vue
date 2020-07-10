@@ -19,7 +19,10 @@
                                     <ul class="ht-menu">
                                         <!-- Begin Setting Area -->
                                         <li>
-                                            <div class=""><router-link to="/logIn"><span>Sign In</span></router-link></div>
+
+                                            <div class="" v-if="!logged"><router-link to="/logIn" ><span>Sign In</span></router-link></div>
+                                            <div class="" v-if="logged"><a href="" @click="loggedOut()"><span>Logout </span></a></div>
+
 
                                         </li>
                                         <!-- Setting Area End Here -->
@@ -174,10 +177,10 @@
                                                 <ul class="minicart-product-list">
                                                     <li v-for="(cart,index) in carts" :key="cart.id">
                                                         <a href="single-product.html" class="minicart-product-image">
-                                                            <img src="css/fronts/images/product/small-size/5.jpg" alt="cart products">
+                                                 <img v-bind:src="'products/small/'+cart.image" alt="" class="img-fluid">
                                                         </a>
                                                         <div class="minicart-product-details">
-                                                            <h6><a href="single-product.html">{{cart.product_name}}</a></h6>
+                                                            <h6><a >{{cart.product_name}}</a></h6>
                                                             <span>{{cart.price }} x {{cart.amount}}</span>
                                                         </div>
                                                         <button class="close" title="Remove" @click="removeCart(index)">
@@ -277,7 +280,7 @@ export default {
             wishes:[],
             heart:0,
             quicksearch:'',
-
+            logged : User.loggedIn()
 
 
         }
@@ -295,6 +298,10 @@ export default {
         this.UpdateCart();
       },
     methods:{
+
+        loggedOut(){
+            User.loggedOut();
+        },
         searchs(){
             axios.get('/api/product/search',this.quicksearch)
             .then(res => {
@@ -369,12 +376,14 @@ EventBus.$on('start',(pro) => {
 
         DeleteWish(){
             EventBus.$on('delteWish',()=>{
+
                 this.viewWish();
             })
         },
-        removescart(){
-            EventBus.$on('deletecart',()=> {
- this.viewcart();
+        removescart(index){
+            EventBus.$on('deletecart',(index)=> {
+            this.removeCart(index);
+            this.viewcart();
             });
 
         },

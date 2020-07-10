@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'FrontLogin_middleware' => \App\Http\Middleware\FrontLogin_middleware::class,
         'jwt.auth' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
         'jwt.refresh' => \Tymon\JWTAuth\Http\Middleware\RefreshToken::class,
+        'JWT'=>\App\Http\Middleware\JWT::class
     ];
 }

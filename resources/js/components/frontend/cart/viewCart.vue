@@ -100,6 +100,7 @@ export default {
     components:{chekout},
 data() {
     return {
+    logged: User.loggedIn(),
     carts:{},
     tprice:'',
     check:false,
@@ -114,6 +115,7 @@ data() {
         coupon_code:'',
         Total_amountPrice :'' ,
     },
+
     }
 },
 created(){
@@ -136,7 +138,7 @@ methods:{
             if(localStorage.getItem('carts')){
                 this.carts.splice(index,1);
                 this.storeCart();
-                EventBus.$emit('deletecart');
+                EventBus.$emit('deletecart',index);
             }
         },
         storeCart(){
@@ -146,6 +148,9 @@ methods:{
         EventBus.$emit('storeCart');
         },
     checkout(){
+        if(!this.logged){
+            return this.$router.push({name:'logged'})
+        }
 this.check =true ;
 this.vcart = false ;
     },

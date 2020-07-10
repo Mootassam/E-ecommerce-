@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Mail ;
 use App\Cart_model;
 use App\Orders_model;
+use App\Mail\OrderStarted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -55,5 +56,15 @@ class OrdersController extends Controller
            $order =  Orders_model::create($request->all());
             return $order ;
 
+    }
+
+    public function start(Request $request){
+        Mail::to('lycy@gmail.com')->send(new OrderStarted);
+    }
+    public function ship(Request $request){
+        return 'ship' ;
+    }
+    public function complete(Request $request){
+        return 'complete' ;
     }
 }

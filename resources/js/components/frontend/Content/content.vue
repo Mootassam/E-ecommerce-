@@ -155,8 +155,10 @@
                                                     <div class="col-lg-4">
                                                         <div class="shop-add-action mb-xs-30">
                                                             <ul class="add-actions-link">
-                                                                <li class="add-cart"> <a  href="#" @click="addtocart(prd)">Ajouter</a></li>
-                                                                <li class="wishlist"><a href="#" @click="wishlist(prd)"><i class="fa fa-heart-o"></i> Ajouter à la liste de souhaits </a></li>
+                                                                <li class="add-cart"> <a v-if="adds" href="#" @click.once="addtocart(prd)">Ajouter</a>
+                                                                <a v-if="disable" href="#" @click="removeCart(index)"><i class="fa fa-times"> </i></a>
+                                                                </li>
+                                                                <li class="wishlist"><a href="#" @click.once="wishlist(prd)"><i class="fa fa-heart-o"></i> Ajouter à la liste de souhaits </a></li>
                                                                 <li class="wishlist"><a href="#" @click="Addtocompare(prd.id)"><i class="fa fa-exchange"></i>Ajouter pour Comparer </a></li>
                                                                 <li><a class="quick-view"  @click="quickComment(prd.id) ; detailProduct(prd.id)"  href="#"><i class="fa fa-eye"></i>Aperçu rapide</a></li>
                                                             </ul>
@@ -178,18 +180,19 @@
                 </div>
             </div>
 
-<comment v-if="comment" :id=id :details=details :data=replyes></comment>
+<comment v-if="comment" :id=id :detailse=details :data=replyes></comment>
  </div>
 </template>
 
 <script>
 import comment from '../product/comment'
-import detail from '../cart/viewp'
 import pagination from "../product/pagination";
 export default {
-    components:{detail,pagination,comment},
+    components:{pagination,comment},
     data() {
         return {
+            adds:true ,
+            disable:false,
             id:'',
             all:{},
              details:{},
@@ -207,6 +210,9 @@ export default {
 
             }
     },
+        computed:{
+
+        },
 created(){
 this.get();
 },
@@ -228,7 +234,20 @@ this.get();
         },
         addtocart(prd){
       EventBus.$emit('start',prd) ;
+      this.adds=false;
+      this.disable=true ;
       },
+        removeCart(index){
+EventBus.$emit('deletecart',index);
+        this.adds=true;
+        this.disable=false ;
+        },
+      storeCart(){
+
+            let parsed = JSON.stringify(this.carts);
+            localStorage.setItem('carts',parsed);
+            this.viewcart() ;
+        },
         quickComment(id){
 
             axios.get(`/api/reply/${id}`).then(
